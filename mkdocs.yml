@@ -59,11 +59,6 @@ extra_css:
   - 'https://rawcdn.githack.com/markusressel/MkDocs-Material-Dark-Theme/7d9804adb85251a75696a3b24f7602e5df465e2a/docs/stylesheets/dark_theme.css'
   - 'https://rawcdn.githack.com/markusressel/MkDocs-Material-Dark-Theme/7d9804adb85251a75696a3b24f7602e5df465e2a/docs/stylesheets/codehilite.css'
 
-# Google Analytics
-google_analytics:
-  - 'UA-90097417-4'
-  - 'auto'
-
 plugins:
   - search
   - minify:
