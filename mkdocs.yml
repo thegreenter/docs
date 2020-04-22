@@ -7,7 +7,7 @@ site_author: 'Giancarlos Salas'
 
 # Repository
 repo_name: 'giansalex/greenter'
-repo_url: 'https://github.com/giansalex/greenter'
+repo_url: 'https://github.com/thegreenter/docs'
 
 copyright: Copyright &copy; 2017 Giancarlos Salas
 
@@ -52,8 +52,9 @@ extra:
   manifest: 'manifest.json'
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/giansalex
+      link: https://github.com/thegreenter
   disqus: 'greenter'
+  repo_project: https://github.com/giansalex/greenter
 
 extra_css:
   - 'https://rawcdn.githack.com/markusressel/MkDocs-Material-Dark-Theme/7d9804adb85251a75696a3b24f7602e5df465e2a/docs/stylesheets/dark_theme.css'
