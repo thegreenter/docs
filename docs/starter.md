@@ -160,6 +160,6 @@ y si todo sale bien obtendremos como respuesta.
 
     La Factura numero F001-1, ha sido aceptada
 
-Esta ejemplo puede encontrarlo en [@giansalex/greenter-firststeps](https://github.com/giansalex/greenter-firststeps).
+Esta ejemplo puede encontrarlo en https://github.com/giansalex/greenter-firststeps.
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/giansalex)
