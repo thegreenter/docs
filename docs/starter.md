@@ -15,13 +15,13 @@ composer install greenter
 - Credenciales Clave SOL
 
 ## Configuración
-Para propósitos de prueba, descargaremos este [certificado](https://raw.githubusercontent.com/thegreenter/signature/master/tests/certificate.pem) y utilizaremos las
+Para propósitos de prueba, descargaremos este [certificado](https://raw.githubusercontent.com/thegreenter/xmldsig/master/tests/certificate.pem) y utilizaremos las
 credenciales por defecto, user `20000000001MODDATOS`, password `moddatos`.
 
 !!! info "Certificado .PFX"
 
     Si cuenta con un certificado .PFX, para convertirlo a formato .PEM necesita
-    la clave y seguir el siguiente [ejemplo](https://github.com/thegreenter/signature/blob/master/CONVERT.md#convert-to-pem)
+    la clave y seguir el siguiente [ejemplo](https://github.com/thegreenter/xmldsig/blob/master/CONVERT.md#convert-to-pem)
     
 Crearemos el archivo `config.php` donde configuraremos la ruta del servicio, el certificado digital y las credenciales (Clave SOL) para conectarse al servicio:
 ```php

@@ -10,7 +10,7 @@ En esta sección de indican los pasos para convertirse en Emisor Electrónico.
 - Creación de usuario secundario con los permisos para Facturación Electrónica.
 - Registrar el certificado digital en el portal de SUNAT, en formato `.cer` (Public key).
 - Greenter requiere el certificado digital en formato `.pem` (Private & Public Key), si tiene un certificado `.pfx`
- puede convertirlo siguiendo esta [guía](https://github.com/thegreenter/signature/blob/master/CONVERT.md).
+ puede convertirlo siguiendo esta [guía](https://github.com/thegreenter/xmldsig/blob/master/CONVERT.md).
 - Configurar la url del servicio de Producción.
 
 ```php hl_lines="5"
