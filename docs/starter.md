@@ -1,6 +1,6 @@
 # Empezando con Greenter
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/giansalex/greenter-firststeps)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/thegreenter/firststeps)
 
 
 ## Instalación
@@ -15,13 +15,13 @@ composer install greenter
 - Credenciales Clave SOL
 
 ## Configuración
-Para propósitos de prueba, descargaremos este [certificado](https://raw.githubusercontent.com/giansalex/xmldsig/master/tests/certificate.pem) y utilizaremos las
+Para propósitos de prueba, descargaremos este [certificado](https://raw.githubusercontent.com/thegreenter/signature/master/tests/certificate.pem) y utilizaremos las
 credenciales por defecto, user `20000000001MODDATOS`, password `moddatos`.
 
 !!! info "Certificado .PFX"
 
     Si cuenta con un certificado .PFX, para convertirlo a formato .PEM necesita
-    la clave y seguir el siguiente [ejemplo](https://github.com/giansalex/xmldsig/blob/master/CONVERT.md#convert-to-pem)
+    la clave y seguir el siguiente [ejemplo](https://github.com/thegreenter/signature/blob/master/CONVERT.md#convert-to-pem)
     
 Crearemos el archivo `config.php` donde configuraremos la ruta del servicio, el certificado digital y las credenciales (Clave SOL) para conectarse al servicio:
 ```php
@@ -160,6 +160,6 @@ y si todo sale bien obtendremos como respuesta.
 
     La Factura numero F001-1, ha sido aceptada
 
-Esta ejemplo puede encontrarlo en https://github.com/giansalex/greenter-firststeps.
+Esta ejemplo puede encontrarlo en https://github.com/thegreenter/firststeps.
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/giansalex)
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://paypal.me/giansalex)
