@@ -27,19 +27,13 @@ tbody {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
-.md-typeset__table th {
-  color: rgba(0, 0, 0, 0.87)!important;
-  font-weight: 600!important;
-  border-bottom: .05rem solid rgba(0, 0, 0, 0.87)!important;;
-}
-
 .md-typeset__table td {
   color: rgba(0, 0, 0, 0.87)!important;
 }
 
 .md-typeset table:not([class]) tr:hover {
-  box-shadow: none !important;
-  background-color: rgba(255, 255, 255, 0.04) !important;
+  box-shadow: 0 .05rem 0 var(--md-default-bg-color) inset;
+  background-color: rgba(0,0,0,.035);
 }
 
 /*
