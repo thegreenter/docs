@@ -6,7 +6,7 @@ site_description: |
 site_author: 'Giancarlos Salas'
 
 # Repository
-repo_name: 'giansalex/greenter'
+repo_name: 'greenter/greenter'
 repo_url: 'https://github.com/thegreenter/docs'
 
 copyright: Copyright &copy; 2017 Giancarlos Salas
@@ -17,7 +17,7 @@ nav:
     - Migrar a UBL 2.1: migrate2.1.md
     - Paso a Producción: production.md
     - 'Preguntas Frecuentes': faq.md
-    - 'API Referencia': https://giansalex.github.io/greenter-apidoc/
+    - 'API Referencia': https://reference.greenter.dev/
     - Ejemplos:
       - F. Exonerada: examples/exonerada.md
       - F. Gratuita: examples/gratuita.md
@@ -39,6 +39,7 @@ theme:
   # Don't include MkDocs' JavaScript
   include_search_page: false
   search_index_only: true
+  
   static_templates:
     - 404.html
   language: 'es'
@@ -53,8 +54,10 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/thegreenter
+    - icon: fontawesome/brands/facebook
+      link: https://fb.me/thegreenter
   disqus: 'greenter'
-  repo_project: https://github.com/giansalex/greenter
+  repo_project: https://github.com/thegreenter/greenter
 
 extra_css:
   - 'css/dark_theme.css'

@@ -34,9 +34,7 @@ $note->setUblVersion('2.1');
 // ...
 ```
 
-Revisar el changelog en [@giansalex/greenter-core](https://github.com/giansalex/greenter-core/blob/master/CHANGELOG.md#oct-2018-10-14-ubl-21), para obtener más detalles.
-
 !!! info "Ejemplo"
 
-    En el [ejemplo](https://giansalex.github.io/greenter/starter/) de primeros pasos, verá los nuevos campos resaltados en el código.
+    En el [ejemplo](/starter/) de primeros pasos, verá los nuevos campos resaltados en el código.
     
