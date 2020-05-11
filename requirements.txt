@@ -1,2 +1,2 @@
-mkdocs-material==5.1.5
+mkdocs-material==5.1.6
 mkdocs-minify-plugin==0.3.0
