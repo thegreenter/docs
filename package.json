@@ -1,0 +1,20 @@
+{
+  "name": "greenter-docs",
+  "version": "1.0.0",
+  "description": "Greenter Docs",
+  "main": "index.js",
+  "scripts": {
+    "build": "mkdocs build && workbox injectManifest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegreenter/docs.git"
+  },
+  "keywords": ["greenter"],
+  "author": "Giancarlos Salas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thegreenter/docs/issues"
+  },
+  "homepage": "https://github.com/thegreenter/docs#readme"
+}
