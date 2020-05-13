@@ -64,7 +64,10 @@ extra:
 extra_css:
   - 'css/dark_theme.css'
   - 'css/codehilite.css'
- 
+
+extra_javascript:
+  - 'js/app.js'
+
 google_analytics:
   - UA-90097417-6
   - auto
