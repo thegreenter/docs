@@ -4,17 +4,23 @@
   "description": "Greenter Docs",
   "main": "index.js",
   "scripts": {
-    "build": "mkdocs build && workbox injectManifest"
+    "build": "mkdocs build && npm run build-sw",
+    "build-sw": "workbox injectManifest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thegreenter/docs.git"
   },
-  "keywords": ["greenter"],
+  "keywords": [
+    "greenter"
+  ],
   "author": "Giancarlos Salas",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/thegreenter/docs/issues"
   },
-  "homepage": "https://github.com/thegreenter/docs#readme"
+  "homepage": "https://github.com/thegreenter/docs#readme",
+  "dependencies": {
+    "workbox-cli": "^5.1.3"
+  }
 }
