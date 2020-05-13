@@ -50,7 +50,7 @@ theme:
     accent: 'Indigo'
 
 extra:
-  manifest: 'manifest.json'
+  manifest: 'manifest.webmanifest'
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/thegreenter
