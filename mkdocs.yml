@@ -65,6 +65,10 @@ extra_css:
   - 'css/dark_theme.css'
   - 'css/codehilite.css'
  
+google_analytics:
+  - UA-90097417-6
+  - auto
+
 plugins:
   - search
   - minify:
