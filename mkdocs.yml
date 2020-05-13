@@ -34,7 +34,7 @@ nav:
 theme:
   name: 'material'
   custom_dir: docs/overrides
-  favicon: 'img/greenter.ico'
+  favicon: 'img/favicon.ico'
   logo: 'img/logo.svg'
   # Don't include MkDocs' JavaScript
   include_search_page: false
