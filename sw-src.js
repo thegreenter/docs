@@ -4,6 +4,9 @@ workbox.setConfig({debug: false});
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 workbox.googleAnalytics.initialize();
 
+workbox.core.clientsClaim();
+workbox.core.skipWaiting();
+
 workbox.routing.registerRoute(
   /\.(?:js|css)$/,
   new workbox.strategies.StaleWhileRevalidate({
