@@ -46,8 +46,9 @@ theme:
   features:
     - tabs
   palette:
-    primary: 'Green'
-    accent: 'Indigo'
+    scheme: slate
+    primary: green
+    accent: indigo
 
 extra:
   manifest: 'manifest.webmanifest'
@@ -62,9 +63,8 @@ extra:
   repo_project: https://github.com/thegreenter/greenter
 
 extra_css:
-  - 'css/dark_theme.css'
   - 'css/codehilite.css'
-
+  
 extra_javascript:
   - 'js/app.js'
 
