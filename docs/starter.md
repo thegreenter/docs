@@ -10,7 +10,7 @@ composer install greenter/greenter
 ```
 
 ## Requerimientos
-- ==Conocimientos en el proceso de Facturación Electrónica, puede revisar la [página web](https://cpe.sunat.gob.pe/) creada por Sunat==
+- ==Conocimientos en el proceso de Facturación Electrónica==, puedes revisar [FE-Primer](https://cpe.sunat.gob.pe/) y [cpe-sunat](https://cpe.sunat.gob.pe/)
 - Certificado en formato PEM
 - Credenciales Clave SOL
 
