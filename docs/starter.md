@@ -23,15 +23,17 @@ composer install greenter/lite
     - [cpe.sunat.gob.pe](https://cpe.sunat.gob.pe/) - Página oficial de SUNAT
 
 ## Configuración
-Para propósitos de prueba, descargaremos este [certificado](https://raw.githubusercontent.com/thegreenter/xmldsig/master/tests/certificate.pem) y utilizaremos las
-credenciales por defecto, user `20000000001MODDATOS`, password `moddatos`.
+Para propósitos de prueba, para firmar los comprobantes electrónicos utilizaremos este [certificado](https://raw.githubusercontent.com/thegreenter/xmldsig/master/tests/certificate.pem), y para conectarnos a los servicios de SUNAT, utilizaremos las credenciales por defecto que nos proporcionan:
 
-!!! info "Certificado .PFX"
+- user: `20000000001MODDATOS`
+- password: `moddatos`
 
-    Si cuenta con un certificado .PFX, para convertirlo a formato .PEM necesita
+!!! info "PKCS#12"
+
+    Si cuenta con un certificado `.p12` or `.pfx`, para convertirlo a formato .PEM necesita
     la clave y seguir el siguiente [ejemplo](https://github.com/thegreenter/xmldsig/blob/master/CONVERT.md#convert-to-pem)
     
-Crearemos el archivo `config.php` donde configuraremos la ruta del servicio, el certificado digital y las credenciales (Clave SOL) para conectarse al servicio:
+Crearemos el archivo `config.php` donde configuraremos la ruta del servicio, el certificado digital y las credenciales (Clave SOL) para conectarnos al servicio **BETA** de SUNAT:
 ```php
 <?php
 use Greenter\Ws\Services\SunatEndpoints;
@@ -55,7 +57,7 @@ return $see;
 
 > Para este ejemplo se usará la version **UBL 2.1**.
 
-Elaboraremos nuestra primera factura electrónica, para ello creamos el archivo `factura.php` y agregaremos el siguiente código:
+Crearemos nuestra primera factura electrónica, para ello en nuevo archivo `factura.php` agregaremos el siguiente código:
 ```php
 <?php
 
@@ -136,6 +138,7 @@ $result = $see->send($invoice);
 file_put_contents($invoice->getName().'.xml',
                   $see->getFactory()->getLastXml());
 if (!$result->isSuccess()) {
+    // Si hubo error al conectarse al servicio de SUNAT.
     var_dump($result->getError());
     exit();
 }
