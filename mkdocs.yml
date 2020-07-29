@@ -92,6 +92,7 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.details
   - pymdownx.tabbed
+  - pymdownx.inlinehilite
   - pymdownx.magiclink:
       repo_url_shortener: true
   - toc:
