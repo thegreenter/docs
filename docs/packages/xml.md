@@ -44,7 +44,7 @@ $xml = $builder->build($invoice);
 echo $xml;
 ```
 
-Tener en cuenta que esto solo crea el XML pero no realiza la firma, para ello utilizar [greentre/xmldsig](sign).    
+Tener en cuenta que esto solo crea el XML pero no realiza la firma, para ello utilizar `greenter/xmldsig`.    
 El siguiente fragmento es una previsualización del resultado:
 
 ```xml
