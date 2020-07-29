@@ -6,7 +6,7 @@
 ## Instalación
 La forma mas facil de instalar grenter es utilizando [composer](https://getcomposer.org/).
 ```bash
-composer install greenter/lite
+composer require greenter/lite
 ```
 
 ## Requerimientos
