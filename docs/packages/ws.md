@@ -29,18 +29,78 @@ $xml = file_get_contents('factura.xml');
 $result = $sender->send(/*Nombre del comprobante*/'20000000001-01-F001-1', $xml);
 
 if (!$result->isSuccess()) {
-    var_dump($result);
+    var_dump($result->getError());
 }
 
-file_put_contents('R-20000000001-01-F001-1.zip', $result->getCdrZip());
+$cdr = $res->getCdrResponse();
+file_put_contents('R-20000000001-01-F001-1.zip', $cdr->getCdrZip());
+var_dump($cdr);
 ```
+
+Esta es una referencia de las clases a utilizar segun el tipo de comprobante. 
+- `BillSender`
+    - Factura
+    - Boleta de Venta
+    - Notas de Crédito
+    - Notas de Débito
+    - Comprobante de Percepción
+    - Comprobante de Retención
+- `SummarySender`
+    - Resumen Diario de Boletas
+    - Comunicación de Baja
+    - Resumen de Reversiones (dar de baja C. de Percepción y Retención)
+
+## Resumen diario
+El resumen diario tiene un proceso diferente al de las facturas, se tiene que realizar una 
+segunda petición al servicio, para obtener la respuesta de un resumen diario previamente enviado.
+En el envio inicial, SUNAT nos retorna un numero de **Ticket** que es el que usaremos para consultar el estado.  
+
+```php
+
+<?php
+use Greenter\Ws\Services\SoapClient;
+use Greenter\Ws\Services\ExtService;
+use Greenter\Ws\Services\SummarySender;
+
+// URL del servicio, el mismo de Facturas.
+$urlService = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService';
+$soap = new SoapClient($urlService);
+$soap->setCredentials('20000000001MODDATOS', 'moddatos');
+$sender = new SummarySender();
+$sender->setClient($soap);
+
+$xml = file_get_contents('resumen.xml');
+$result = $sender->send('20000000001-RC-20200728-1', $xml);
+
+if (!$result->isSuccess()) {
+    var_dump($result->getError());
+}
+
+$ticket = $result->getTicket();
+
+$statusService = new ExtService();
+$statusService->setClient($soap);
+
+$status = $statusService->getStatus($ticket);
+
+if (!$status->isSuccess()) {
+    var_dump($status);
+}
+
+$cdr = $status->getCdrResponse();
+file_put_contents('R-20000000001-RC-20200728-1.zip', $cdr->getCdrZip());
+var_dump($cdr);
+
+```
+
+!!! info "Nota"
+
+    La comunicación de baja y resumen de reversión siguen el mismo proceso.
+
 
 ## Servicios
 SUNAT dispone de servicios de prueba (`BETA`) y de producción para los diferentes tipos de 
 comprobantes electrónicos.
-
-- El servicio de **Factura** tambien se utiliza para enviar el Resumen Diario de Boletas y Comunicaciones de Baja
-- El servicio de **Retención y Percepción** permite enviar las Reversiones (Anulaciones de Retención, Percepción)
 
 === "BETA"
 
