@@ -19,7 +19,6 @@ nav:
       - Migrar a UBL 2.1: migrate2.1.md
       - Paso a Producción: production.md
       - 'Preguntas Frecuentes': faq.md
-      - 'API Referencia': https://reference.greenter.dev/
     - Ejemplos:
       - F. Exonerada: examples/exonerada.md
       - F. Gratuita: examples/gratuita.md
@@ -31,6 +30,12 @@ nav:
       - F. ICBPER: examples/icbper.md
       - 'Boleta de Venta': examples/boleta.md
       - Contingencia: examples/contingencia.md
+    - Referencia:
+      - greenter/xml: packages/xml.md
+      - greenter/sign: packages/sign.md
+      - greenter/ws: packages/ws.md
+      - greenter/report: packages/report.md
+      - 'API Referencia': https://reference.greenter.dev/
 
 # Configuration
 theme:
