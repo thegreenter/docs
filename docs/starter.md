@@ -6,13 +6,21 @@
 ## Instalación
 La forma mas facil de instalar grenter es utilizando [composer](https://getcomposer.org/).
 ```bash
-composer install greenter/greenter
+composer install greenter/lite
 ```
 
 ## Requerimientos
-- ==Conocimientos en el proceso de Facturación Electrónica==, puedes revisar [FE-Primer](https://cpe.sunat.gob.pe/) y [cpe-sunat](https://cpe.sunat.gob.pe/)
-- Certificado en formato PEM
-- Credenciales Clave SOL
+
+=== "Técnico"
+    
+    - Certificado en formato PEM
+    - Credenciales Clave SOL
+
+=== "Bases"
+    Para conocer más detalles sobre el proceso de Facturación Electrónica, puede consultar.
+
+    - [FE Primer](https://cpe.sunat.gob.pe/) - Guía de inicio hecho por Greenter
+    - [cpe.sunat.gob.pe](https://cpe.sunat.gob.pe/) - Página oficial de SUNAT
 
 ## Configuración
 Para propósitos de prueba, descargaremos este [certificado](https://raw.githubusercontent.com/thegreenter/xmldsig/master/tests/certificate.pem) y utilizaremos las
