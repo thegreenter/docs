@@ -63,8 +63,8 @@ El resultado seria este:
 ```
 
 Datos a considerar:    
-`#!xml <ds:DigestValue>`: Valor Resumen, utilizado en la representación impresa y codigo QR.   
-`#!xml <ds:SignatureValue>`: Valor de la Firma.   
+`#!xml <ds:DigestValue>`: Valor Resumen codificado en `base64`, utilizado en la representación impresa y codigo QR.   
+`#!xml <ds:SignatureValue>`: Valor de la Firma codificado en `base64`.   
 `#!xml <ds:X509Certificate>`: Contenido del certificado, necesario para verificar la autenticidad del documento.   
 
 !!! info "Otros formatos de certificado"
