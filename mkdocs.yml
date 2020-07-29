@@ -32,7 +32,7 @@ nav:
       - Contingencia: examples/contingencia.md
     - Referencia:
       - greenter/xml: packages/xml.md
-      - greenter/sign: packages/sign.md
+      - greenter/xmldsig: packages/sign.md
       - greenter/ws: packages/ws.md
       - greenter/report: packages/report.md
       - 'API Referencia': https://reference.greenter.dev/
