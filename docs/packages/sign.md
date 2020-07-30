@@ -7,6 +7,9 @@ Esta libreria permite realizar la firma digital de los documentos XML con un cer
 composer require greenter/xmldsig
 ```
 
+!!! warning "Requerimientos"
+    Se necesitar tener habilitado la extension `openssl` en `php.ini`
+
 ## Uso
 
 Para este ejemplo necesitamos un archivo XML previamente generado, debemos asegurarnos de incluir la etiqueta `#!xml <ext:ExtensionContent/>`, que es donde se agregará el nodod de la firma.  
