@@ -22,6 +22,7 @@ $see->setService(SunatEndpoints::FE_PRODUCCION);
 $see->setCertificate(file_get_contents(__DIR__.'/valid-cer.pem'));
 $see->setCredentials('20000000001DNOMBLOI', 'psdlbmrt'); // clave SOL
 
+// Donde '20000000001DNOMBLOI' resulta de concatenar el RUC (20000000001) y Usuario SOL (DNOMBLOI).
 ```
 
 !!! info "Usuario Secundario"
