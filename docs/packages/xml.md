@@ -6,6 +6,11 @@ Esta libreria permite generar documentos XML siguiendo el estándar UBL 2.0 y 2.
 
     No usar la versión 2.0 para generar Facturas, Boletas, Notas de Crédito, Notas de Débito, ya que SUNAT actualmente exige utilizar la versión `UBL 2.1`.
 
+## Instalar
+```sh
+composer require greenter/xml
+```
+
 ## Documentos
 Los documentos disponibles en este paquete son:
 
@@ -19,11 +24,6 @@ Documento UBL |       Builder       |     Comprobante      |
  Despatch     | `DespatchBuilder`   | Guía de Remisión     |
  Retention    | `RetentionBuilder`  | Retención            |
  Perception   | `PerceptionBuilder` | Percepción           |
-
-## Instalar
-```sh
-composer require greenter/xml
-```
 
 ## Uso
 
