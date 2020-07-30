@@ -6,6 +6,10 @@ comprobantes (archivos XML) antes de enviarlo a SUNAT bajo el protocolo `SOAP`, 
 el comprobante de recepción (CDR) extrae la respuesta para saber el estado del comprobante (Aprobado, Rechazado, 
 Observaciones). 
 
+## Instalar
+```sh
+composer require greenter/ws
+```
 
 ## Uso
 Para este ejemplo necesitamos un documento XML firmado, y para autenticarnos en los servicios de SUNAT,

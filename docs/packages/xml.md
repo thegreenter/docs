@@ -20,6 +20,10 @@ Documento UBL |       Builder       |     Comprobante      |
  Retention    | `RetentionBuilder`  | Retención            |
  Perception   | `PerceptionBuilder` | Percepción           |
 
+## Instalar
+```sh
+composer require greenter/xml
+```
 
 ## Uso
 

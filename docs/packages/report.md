@@ -2,6 +2,11 @@
 
 Para elaborar una representación impresa se dispone de los formatos: HTML y PDF.
 
+## Instalar
+```sh
+composer require greenter/report
+```
+
 ## Uso
 
 Este ejemplo se base en el modelo de factura (`Invoice`), para generar un reporte HTML. 
@@ -83,6 +88,11 @@ echo $html;
 # Reporte en PDF
 
 Para obtener una representación en formato PDF, Utilizamos [wkhtmltopdf](https://wkhtmltopdf.org/).
+
+## Instalar
+```sh
+composer require greenter/htmltopdf
+```
 
 ## Uso
 

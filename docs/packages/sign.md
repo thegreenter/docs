@@ -2,6 +2,11 @@
 
 Esta libreria permite realizar la firma digital de los documentos XML con un certificado electrónico, siguiendo la normativa de SUNAT.
 
+## Instalar
+```sh
+composer require greenter/xmldsig
+```
+
 ## Uso
 
 Para este ejemplo necesitamos un archivo XML previamente generado, debemos asegurarnos de incluir la etiqueta `#!xml <ext:ExtensionContent/>`, que es donde se agregará el nodod de la firma.  
