@@ -69,13 +69,13 @@ Puedes crear tus propios reportes usando [twig](https://twig.symfony.com/), pued
 
 Necesitas crear un directorio con las nuevas plantillas, en este ejemplo el directorio se llama `custom`.
 
-```
-|
-|-/custom/
-|     |- factura.html.twig
-|     |- nota-credito.html.twig
-|
-|
+```text
+│
+├─/custom/
+│     ├─ factura.html.twig
+│     ├─ nota-credito.html.twig
+│
+│
 ```
 
 Configuración de `HtmlReport`.
@@ -142,3 +142,7 @@ $pdf = $report->render($invoice, $params);
 file_put_contents('invoice.pdf', $pdf);
 
 ```
+
+## Previsualización
+
+[![greenter factura PDF](/img/greenter-factura-pdf.png)](/files/greenter-factura-preview.pdf)
