@@ -10,16 +10,16 @@ composer require greenter/report
 ## Documentos
 Lista de documentos con reporte disponible.
 
-- [x] Factura Electrónica  
-- [x] Boleta Electrónica  
-- [x] Nota de Crédito Electrónica  
-- [x] Nota de Débito Electrónica  
-- [x] Guía de Remisión Electrónica  
-- [x] Retención Electrónica  
-- [x] Percepción Electrónica
-- [x] Resumen diario de Boletas
-- [x] Comunicación de Bajas
-- [x] Resumen diario de Reversiones
+- Factura  
+- Boleta de Venta
+- Nota de Crédito  
+- Nota de Débito  
+- Guía de Remisión  
+- Comprobante de Retención  
+- Comprobante de Percepción
+- Resumen diario de Boletas
+- Comunicación de Bajas
+- Resumen diario de Reversiones
 
 ## Uso
 
@@ -99,16 +99,16 @@ echo $html;
 ```
 
 
-# Reporte en PDF
+## Reporte en PDF
 
 Para obtener una representación en formato PDF, Utilizamos [wkhtmltopdf](https://wkhtmltopdf.org/).
 
-## Instalar
+### Instalar
 ```sh
 composer require greenter/htmltopdf
 ```
 
-## Uso
+### Uso
 
 `PdfReport` sigue el patrón [Decorator](https://es.wikipedia.org/wiki/Decorator_(patr%C3%B3n_de_dise%C3%B1o)), para generar el pdf a partir de `HtmlReport` o cualquier otra clase que implemente [`ReportInterface`](https://reference.greenter.dev/Greenter/Report/ReportInterface.html).
 
