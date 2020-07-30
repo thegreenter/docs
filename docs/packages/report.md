@@ -7,6 +7,20 @@ Para elaborar una representación impresa se dispone de los formatos: HTML y PDF
 composer require greenter/report
 ```
 
+## Documentos
+Lista de documentos con reporte disponible.
+
+- [x] Factura Electrónica  
+- [x] Boleta Electrónica  
+- [x] Nota de Crédito Electrónica  
+- [x] Nota de Débito Electrónica  
+- [x] Guía de Remisión Electrónica  
+- [x] Retención Electrónica  
+- [x] Percepción Electrónica
+- [x] Resumen diario de Boletas
+- [x] Comunicación de Bajas
+- [x] Resumen diario de Reversiones
+
 ## Uso
 
 Este ejemplo se base en el modelo de factura (`Invoice`), para generar un reporte HTML. 
