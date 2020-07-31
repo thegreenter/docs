@@ -23,10 +23,11 @@ composer require greenter/lite
     - [cpe.sunat.gob.pe](https://cpe.sunat.gob.pe/) - Página oficial de SUNAT
 
 ## Configuración
-Para propósitos de prueba, para firmar los comprobantes electrónicos utilizaremos este [certificado](https://raw.githubusercontent.com/thegreenter/xmldsig/master/tests/certificate.pem), y para conectarnos a los servicios de SUNAT, utilizaremos las credenciales por defecto que nos proporcionan:
+En este ejemplo para firmar los comprobantes electrónicos utilizaremos este [certificado](https://raw.githubusercontent.com/thegreenter/xmldsig/master/tests/certificate.pem), y para conectarnos a los servicios de SUNAT, utilizaremos las credenciales **Clave SOL** que nos proporciona SUNAT en su documentación:
 
-- user: `20000000001MODDATOS`
-- password: `moddatos`
+- RUC: `20000000001`
+- Usuario: `MODDATOS`
+- Contraseña: `moddatos`
 
 !!! info "PKCS#12"
 
@@ -39,15 +40,10 @@ Crearemos el archivo `config.php` donde configuraremos la ruta del servicio, el 
 use Greenter\Ws\Services\SunatEndpoints;
 use Greenter\See;
 
-// CLAVE SOL utilizada.
-// Ruc: 20000000001
-// Usuario: MODDATOS
-// Contraseña: moddatos
-
 $see = new See();
 $see->setService(SunatEndpoints::FE_BETA);
 $see->setCertificate(file_get_contents(__DIR__.'/certificate.pem'));
-$see->setCredentials('20000000001MODDATOS'/*ruc+usuario*/, 'moddatos');
+$see->setClaveSOL('20000000001', 'MODDATOS', 'moddatos');
 
 return $see;
 ```
