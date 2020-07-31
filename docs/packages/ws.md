@@ -118,6 +118,7 @@ pero tener en cuenta que solo es posible en Producción y solo esta disponible p
 use Greenter\Ws\Services\ConsultCdrService;
 use Greenter\Ws\Services\SoapClient;
 
+// URL CDR de Producción
 $urlService = 'https://e-factura.sunat.gob.pe/ol-it-wsconscpegem/billConsultService';
 $soap = new SoapClient($urlService);
 $soap->setCredentials('20000000001MODDATOS', 'moddatos');
