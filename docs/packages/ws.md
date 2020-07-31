@@ -37,9 +37,10 @@ $result = $sender->send(/*Nombre del comprobante*/'20000000001-01-F001-1', $xml)
 
 if (!$result->isSuccess()) {
     var_dump($result->getError());
+    return;
 }
 
-$cdr = $res->getCdrResponse();
+$cdr = $result->getCdrResponse();
 file_put_contents('R-20000000001-01-F001-1.zip', $cdr->getCdrZip());
 var_dump($cdr);
 ```
@@ -81,6 +82,7 @@ $result = $sender->send('20000000001-RC-20200728-1', $xml);
 
 if (!$result->isSuccess()) {
     var_dump($result->getError());
+    return;
 }
 
 $ticket = $result->getTicket();
@@ -92,6 +94,7 @@ $status = $statusService->getStatus($ticket);
 
 if (!$status->isSuccess()) {
     var_dump($status);
+    return;
 }
 
 $cdr = $status->getCdrResponse();
@@ -104,6 +107,45 @@ var_dump($cdr);
 
     La comunicación de baja y resumen de reversión siguen el mismo proceso.
 
+## Consulta CDR
+Si por algún motivo no disponemos del `CDR`, lo podemos volver a obtener consultando al servicio de SUNAT,
+pero tener en cuenta que solo es posible en Producción y solo esta disponible para **Facturas** y
+**Notas de Crédito/Débito** relacionada a facturas.
+
+```php
+<?php
+
+use Greenter\Ws\Services\ConsultCdrService;
+use Greenter\Ws\Services\SoapClient;
+
+$urlService = 'https://e-factura.sunat.gob.pe/ol-it-wsconscpegem/billConsultService';
+$soap = new SoapClient($urlService);
+$soap->setCredentials('20000000001MODDATOS', 'moddatos');
+
+$service = new ConsultCdrService();
+$service->setClient($client);
+
+$rucEmisor = '20000000001';
+$tipoDocumento = '01'; // 01: Factura, 07: Nota de Crédito, 08: Nota de Débito
+$serie = 'F001';
+$correlativo = '1';
+$result = $service->getStatusCdr($rucEmisor, $tipoDocumento, $serie, $correlativo);
+
+if (!$result->isSuccess()) {
+    var_dump($result->getError());
+    return;
+}
+
+$cdr = $result->getCdrResponse();
+if ($cdr === null) {
+    echo 'CDR no encontrado, el comprobante no ha sido comunicado a SUNAT.';
+    return;
+}
+
+file_put_contents('R-20000000001-01-F001-1.zip', $cdr->getCdrZip());
+var_dump($cdr);
+
+```
 
 ## Servicios
 SUNAT dispone de servicios de prueba (`BETA`) y de producción para los diferentes tipos de 
