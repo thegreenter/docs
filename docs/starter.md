@@ -168,3 +168,7 @@ y si todo sale bien obtendremos como respuesta.
     La Factura numero F001-1, ha sido aceptada
 
 Este ejemplo puede encontrarlo en https://github.com/thegreenter/firststeps.
+
+## Comentarios
+
+Pueden unirse a 👋 [Greenter Community](https://community.greenter.dev/).
