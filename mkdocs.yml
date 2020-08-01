@@ -9,7 +9,7 @@ site_author: 'Giancarlos Salas'
 repo_name: 'greenter/greenter'
 repo_url: 'https://github.com/thegreenter/docs'
 
-copyright: Copyright &copy; 2020 Giancarlos Salas
+copyright: Copyright &copy; 2020 Greenter
 
 nav:
     - Inicio:
