@@ -167,6 +167,4 @@ y si todo sale bien obtendremos como respuesta.
 
     La Factura numero F001-1, ha sido aceptada
 
-Esta ejemplo puede encontrarlo en https://github.com/thegreenter/firststeps.
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://paypal.me/giansalex) [![yape-donate](https://badgen.net/badge/donar/yape/purple)](https://yape.greenter.dev/)
+Este ejemplo puede encontrarlo en https://github.com/thegreenter/firststeps.
