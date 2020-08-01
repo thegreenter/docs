@@ -1,10 +1,10 @@
 # Uso de Greenter
 
-Más opciones que podemos utilizar con **Greenter**.
+Más opciones que tenemos al utilizar **Greenter**.
 
 ## Generar XML firmado
 
-El ejemplo básico nos mostró como realizar todo el proceso de facturacion con un solo método `send()`, pero si necesitamos generar solo el XML firmado, lo cual seria útil para **Boletas de Venta** ya que estas no se envian a SUNAT individualmente.
+El ejemplo básico nos mostró como realizar todo el proceso de facturacion con un solo método `send()`, pero si necesitamos generar solo el XML firmado, lo cual seria útil para **Boletas de Venta** ya que estas no se envían a SUNAT individualmente.
 
 ```php
 <?php
@@ -43,7 +43,7 @@ $see = require __DIR__.'/config.php';
 $xmlSigned = file_get_contents('20000000001-01-F001-1.xml');
 
 $result = $see->sendXmlFile($xmlSigned);
-
+// $result se maneja del mismo modo que con el metodo send()
 ```
 
 ## Resumen diario
@@ -133,7 +133,9 @@ file_put_contents('R-'.$resumen->getName().'.zip', $statusResult->getCdrZip());
 ```
 
 ## Comunicacion de Baja
-Para comunicar a SUNAT las anulaciones de facturas y sus notas de crédito/débito releacionadas, necesita hacerlo mediante el documento de _comunicación de baja_ .
+Para comunicar a SUNAT las anulaciones de facturas y sus notas de crédito/débito releacionadas, necesita hacerlo mediante el documento de _comunicación de baja_.   
+
+El envío a los servicios de SUNAT se maneja de la misma forma que el _resumen diario_.
 
 ```php
 <?php
@@ -142,13 +144,13 @@ use Greenter\Model\Voided\Voided;
 use Greenter\Model\Voided\VoidedDetail;
 
 $detail1 = new VoidedDetail();
-$detail1->setTipoDoc('01')
+$detail1->setTipoDoc('01') // Factura
     ->setSerie('F001')
     ->setCorrelativo('1')
-    ->setDesMotivoBaja('ERROR EN CÁLCULOS');
+    ->setDesMotivoBaja('ERROR EN CÁLCULOS'); // Motivo por el cual se da de baja.
 
 $detail2 = new VoidedDetail();
-$detail2->setTipoDoc('07')
+$detail2->setTipoDoc('07') // Nota de Crédito
     ->setSerie('FC01')
     ->setCorrelativo('2')
     ->setDesMotivoBaja('ERROR DE RUC');
@@ -185,3 +187,7 @@ echo $statusResult->getCdrResponse()->getDescription();
 // Guardar CDR
 file_put_contents('R-'.$cDeBaja->getName().'.zip', $statusResult->getCdrZip());
 ```
+
+!!! warning "Anulación de Boletas"
+    Para anular boletas y NCR, NDB relacionadas, se utiliza el resumen diario indicando 
+    el campo `estado=3`
