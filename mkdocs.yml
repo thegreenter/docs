@@ -16,7 +16,7 @@ nav:
       - index.md
     - Empezar:
       - Guia de Inicio: starter.md
-      - Migrar a UBL 2.1: migrate2.1.md
+      - Detalles de uso: usage.md
       - Paso a Producción: production.md
       - 'Preguntas Frecuentes': faq.md
     - Ejemplos:
