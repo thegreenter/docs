@@ -66,6 +66,8 @@ extra:
       link: https://fb.me/thegreenter
     - icon: fontawesome/brands/discourse
       link: https://community.greenter.dev/
+    - icon: fontawesome/brands/gratipay
+      link: https://yape.greenter.dev/
   repo_project: https://github.com/thegreenter/greenter
 
 extra_css:
