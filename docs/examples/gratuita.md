@@ -22,9 +22,10 @@ $invoice
     ->setClient($this->getClient())
     ->setCompany($this->getCompany())
     ->setMtoOperGratuitas(200)
-    ->setMtoIGV(0)
+    ->setMtoIGVGratuitas(36)
     ->setTotalImpuestos(0)
     ->setValorVenta(0)
+    ->setSubTotal(0)
     ->setMtoImpVenta(0);
 
 $detail = new SaleDetail();
