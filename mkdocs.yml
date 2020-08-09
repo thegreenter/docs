@@ -9,15 +9,16 @@ site_author: 'Giancarlos Salas'
 repo_name: 'greenter/greenter'
 repo_url: 'https://github.com/thegreenter/docs'
 
-copyright: Copyright &copy; 2017 Giancarlos Salas
+copyright: Copyright &copy; 2020 Greenter
 
 nav:
-    - Inicio: index.md
-    - Empezar: starter.md
-    - Migrar a UBL 2.1: migrate2.1.md
-    - Paso a Producción: production.md
-    - 'Preguntas Frecuentes': faq.md
-    - 'API Referencia': https://reference.greenter.dev/
+    - Inicio:
+      - index.md
+    - Empezar:
+      - Guia de Inicio: starter.md
+      - Detalles de uso: usage.md
+      - Paso a Producción: production.md
+      - 'Preguntas Frecuentes': faq.md
     - Ejemplos:
       - F. Exonerada: examples/exonerada.md
       - F. Gratuita: examples/gratuita.md
@@ -29,6 +30,12 @@ nav:
       - F. ICBPER: examples/icbper.md
       - 'Boleta de Venta': examples/boleta.md
       - Contingencia: examples/contingencia.md
+    - Referencia:
+      - greenter/xml: packages/xml.md
+      - greenter/xmldsig: packages/sign.md
+      - greenter/ws: packages/ws.md
+      - greenter/report: packages/report.md
+      - 'API Referencia': https://reference.greenter.dev/
 
 # Configuration
 theme:
@@ -59,7 +66,8 @@ extra:
       link: https://fb.me/thegreenter
     - icon: fontawesome/brands/discourse
       link: https://community.greenter.dev/
-  disqus: 'greenter'
+    - icon: fontawesome/brands/gratipay
+      link: https://yape.greenter.dev/
   repo_project: https://github.com/thegreenter/greenter
 
 extra_css:
@@ -84,6 +92,8 @@ markdown_extensions:
   - meta
   - pymdownx.mark
   - pymdownx.details
+  - pymdownx.tabbed
+  - pymdownx.inlinehilite
   - pymdownx.magiclink:
       repo_url_shortener: true
   - toc:

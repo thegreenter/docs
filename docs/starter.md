@@ -6,38 +6,44 @@
 ## Instalación
 La forma mas facil de instalar grenter es utilizando [composer](https://getcomposer.org/).
 ```bash
-composer install greenter/greenter
+composer require greenter/lite
 ```
 
 ## Requerimientos
-- ==Conocimientos en el proceso de Facturación Electrónica==, puedes revisar [FE-Primer](https://cpe.sunat.gob.pe/) y [cpe-sunat](https://cpe.sunat.gob.pe/)
-- Certificado en formato PEM
-- Credenciales Clave SOL
+
+=== "Técnico"
+    
+    - Certificado en formato PEM
+    - Credenciales Clave SOL
+
+=== "Bases"
+    Para conocer más detalles sobre el proceso de Facturación Electrónica, puede consultar.
+
+    - [FE Primer](https://cpe.sunat.gob.pe/) - Guía de inicio hecho por Greenter
+    - [cpe.sunat.gob.pe](https://cpe.sunat.gob.pe/) - Página oficial de SUNAT
 
 ## Configuración
-Para propósitos de prueba, descargaremos este [certificado](https://raw.githubusercontent.com/thegreenter/xmldsig/master/tests/certificate.pem) y utilizaremos las
-credenciales por defecto, user `20000000001MODDATOS`, password `moddatos`.
+En este ejemplo para firmar los comprobantes electrónicos utilizaremos este [certificado](https://raw.githubusercontent.com/thegreenter/xmldsig/master/tests/certificate.pem), y para conectarnos a los servicios de SUNAT, utilizaremos las credenciales **Clave SOL** que nos proporciona SUNAT en su documentación:
 
-!!! info "Certificado .PFX"
+- RUC: `20000000001`
+- Usuario: `MODDATOS`
+- Contraseña: `moddatos`
 
-    Si cuenta con un certificado .PFX, para convertirlo a formato .PEM necesita
+!!! info "PKCS#12"
+
+    Si cuenta con un certificado `.p12` or `.pfx`, para convertirlo a formato .PEM necesita
     la clave y seguir el siguiente [ejemplo](https://github.com/thegreenter/xmldsig/blob/master/CONVERT.md#convert-to-pem)
     
-Crearemos el archivo `config.php` donde configuraremos la ruta del servicio, el certificado digital y las credenciales (Clave SOL) para conectarse al servicio:
+Crearemos el archivo `config.php` donde configuraremos la ruta del servicio, el certificado digital y las credenciales (Clave SOL) para conectarnos al servicio **BETA** de SUNAT:
 ```php
 <?php
 use Greenter\Ws\Services\SunatEndpoints;
 use Greenter\See;
 
-// CLAVE SOL utilizada.
-// Ruc: 20000000001
-// Usuario: MODDATOS
-// Contraseña: moddatos
-
 $see = new See();
-$see->setService(SunatEndpoints::FE_BETA);
 $see->setCertificate(file_get_contents(__DIR__.'/certificate.pem'));
-$see->setCredentials('20000000001MODDATOS'/*ruc+usuario*/, 'moddatos');
+$see->setService(SunatEndpoints::FE_BETA);
+$see->setClaveSOL('20000000001', 'MODDATOS', 'moddatos');
 
 return $see;
 ```
@@ -47,7 +53,7 @@ return $see;
 
 > Para este ejemplo se usará la version **UBL 2.1**.
 
-Elaboraremos nuestra primera factura electrónica, para ello creamos el archivo `factura.php` y agregaremos el siguiente código:
+Crearemos nuestra primera factura electrónica, para ello en nuevo archivo `factura.php` agregaremos el siguiente código:
 ```php
 <?php
 
@@ -128,6 +134,7 @@ $result = $see->send($invoice);
 file_put_contents($invoice->getName().'.xml',
                   $see->getFactory()->getLastXml());
 if (!$result->isSuccess()) {
+    // Si hubo error al conectarse al servicio de SUNAT.
     var_dump($result->getError());
     exit();
 }
@@ -160,6 +167,8 @@ y si todo sale bien obtendremos como respuesta.
 
     La Factura numero F001-1, ha sido aceptada
 
-Esta ejemplo puede encontrarlo en https://github.com/thegreenter/firststeps.
+Este ejemplo puede encontrarlo en https://github.com/thegreenter/firststeps.
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://paypal.me/giansalex)
+## Comentarios
+
+Pueden unirse a 👋 [Greenter Community](https://community.greenter.dev/).
