@@ -142,6 +142,12 @@ $params = [/*...*/];
 
 $pdf = $report->render($invoice, $params);
 
+if ($pdf === null) {
+    $error = $report->getExporter()->getError();
+    echo 'Error: '.$error;
+    return;
+}
+
 file_put_contents('invoice.pdf', $pdf);
 
 ```
