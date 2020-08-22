@@ -3,7 +3,7 @@
 > Las lineas resaltadas son propias de este modelo de factura.
 
 ## Código
-
+```php hl_lines="10 25 26 27 28 29 30 31 32 56 57"
         $invoice = new Invoice();
         $invoice
             ->setFecVencimiento(new \DateTime())
@@ -129,4 +129,4 @@
                     ->setCode('2006')
                     ->setValue('Operación sujeta a detracción')
             ]);
-
+```
