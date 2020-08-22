@@ -27,7 +27,8 @@ use Greenter\Ws\Services\BillSender;
 
 // URL del servicio para Facturas.
 $urlService = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService';
-$soap = new SoapClient($urlService);
+$soap = new SoapClient();
+$soap->setService($urlService);
 $soap->setCredentials('20000000001MODDATOS', 'moddatos'); // user = ruc + usuario sol
 $sender = new BillSender();
 $sender->setClient($soap);
@@ -72,7 +73,8 @@ use Greenter\Ws\Services\SummarySender;
 
 // URL del servicio, el mismo de Facturas.
 $urlService = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService';
-$soap = new SoapClient($urlService);
+$soap = new SoapClient();
+$soap->setService($urlService);
 $soap->setCredentials('20000000001MODDATOS', 'moddatos');
 $sender = new SummarySender();
 $sender->setClient($soap);
@@ -120,7 +122,8 @@ use Greenter\Ws\Services\SoapClient;
 
 // URL CDR de Producción
 $urlService = 'https://e-factura.sunat.gob.pe/ol-it-wsconscpegem/billConsultService';
-$soap = new SoapClient($urlService);
+$soap = new SoapClient();
+$soap->setService($urlService);
 $soap->setCredentials('20000000001MODDATOS', 'moddatos');
 
 $service = new ConsultCdrService();
