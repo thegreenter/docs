@@ -28,7 +28,8 @@ bajo la normativa dispuesta por SUNAT
 
 <span class=c1>// URL del servicio para Facturas.</span>
 <span class=nv>$urlService</span> <span class=o>=</span> <span class=s1>&#39;https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService&#39;</span><span class=p>;</span>
-<span class=nv>$soap</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SoapClient</span><span class=p>(</span><span class=nv>$urlService</span><span class=p>);</span>
+<span class=nv>$soap</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SoapClient</span><span class=p>();</span>
+<span class=nv>$soap</span><span class=o>-&gt;</span><span class=na>setService</span><span class=p>(</span><span class=nv>$urlService</span><span class=p>);</span>
 <span class=nv>$soap</span><span class=o>-&gt;</span><span class=na>setCredentials</span><span class=p>(</span><span class=s1>&#39;20000000001MODDATOS&#39;</span><span class=p>,</span> <span class=s1>&#39;moddatos&#39;</span><span class=p>);</span> <span class=c1>// user = ruc + usuario sol</span>
 <span class=nv>$sender</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>BillSender</span><span class=p>();</span>
 <span class=nv>$sender</span><span class=o>-&gt;</span><span class=na>setClient</span><span class=p>(</span><span class=nv>$soap</span><span class=p>);</span>
@@ -51,7 +52,8 @@ bajo la normativa dispuesta por SUNAT
 
 <span class=c1>// URL del servicio, el mismo de Facturas.</span>
 <span class=nv>$urlService</span> <span class=o>=</span> <span class=s1>&#39;https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService&#39;</span><span class=p>;</span>
-<span class=nv>$soap</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SoapClient</span><span class=p>(</span><span class=nv>$urlService</span><span class=p>);</span>
+<span class=nv>$soap</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SoapClient</span><span class=p>();</span>
+<span class=nv>$soap</span><span class=o>-&gt;</span><span class=na>setService</span><span class=p>(</span><span class=nv>$urlService</span><span class=p>);</span>
 <span class=nv>$soap</span><span class=o>-&gt;</span><span class=na>setCredentials</span><span class=p>(</span><span class=s1>&#39;20000000001MODDATOS&#39;</span><span class=p>,</span> <span class=s1>&#39;moddatos&#39;</span><span class=p>);</span>
 <span class=nv>$sender</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SummarySender</span><span class=p>();</span>
 <span class=nv>$sender</span><span class=o>-&gt;</span><span class=na>setClient</span><span class=p>(</span><span class=nv>$soap</span><span class=p>);</span>
@@ -86,7 +88,8 @@ bajo la normativa dispuesta por SUNAT
 
 <span class=c1>// URL CDR de Producción</span>
 <span class=nv>$urlService</span> <span class=o>=</span> <span class=s1>&#39;https://e-factura.sunat.gob.pe/ol-it-wsconscpegem/billConsultService&#39;</span><span class=p>;</span>
-<span class=nv>$soap</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SoapClient</span><span class=p>(</span><span class=nv>$urlService</span><span class=p>);</span>
+<span class=nv>$soap</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SoapClient</span><span class=p>();</span>
+<span class=nv>$soap</span><span class=o>-&gt;</span><span class=na>setService</span><span class=p>(</span><span class=nv>$urlService</span><span class=p>);</span>
 <span class=nv>$soap</span><span class=o>-&gt;</span><span class=na>setCredentials</span><span class=p>(</span><span class=s1>&#39;20000000001MODDATOS&#39;</span><span class=p>,</span> <span class=s1>&#39;moddatos&#39;</span><span class=p>);</span>
 
 <span class=nv>$service</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>ConsultCdrService</span><span class=p>();</span>
