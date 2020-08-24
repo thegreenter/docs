@@ -35,6 +35,7 @@ nav:
       - greenter/xmldsig: packages/sign.md
       - greenter/ws: packages/ws.md
       - greenter/report: packages/report.md
+      - greenter/xml-parser: packages/xml-parser.md
       - 'API Referencia': https://reference.greenter.dev/
 
 # Configuration
