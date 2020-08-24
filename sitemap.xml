@@ -75,5 +75,9 @@
      <loc>https://greenter.dev/packages/report/</loc>
      <lastmod>2020-08-24</lastmod>
      <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://greenter.dev/packages/xml-parser/</loc>
+     <lastmod>2020-08-24</lastmod>
+     <changefreq>daily</changefreq>
     </url>
 </urlset>
