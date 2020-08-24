@@ -2,6 +2,10 @@
 
 Esta libreria permite crear objetos PHP a partir de documentos XML.
 
+!!! warning "UBL 2.1"
+
+    Actualmente solo esta implementada la versión `UBL 2.0`, aún esta pendiente la implementación de la versión `UBL 2.1`.
+
 ## Instalar
 ```sh
 composer require greenter/xml-parser
@@ -21,10 +25,6 @@ Documento UBL |       Parser       |     Comprobante                 |
  Retention    | `RetentionParser`  | Retención                       |
  Perception   | `PerceptionParser` | Percepción                      |
 
-!!! warning "UBL 2.1"
-
-    Actualmente solo esta implementado la versión `UBL 2.0`, aún esta pendiente la implementación de la versión `UBL 2.1`.
-
 
 ## Uso
 
@@ -34,16 +34,30 @@ Los archivo XML serán convertidos a modelos de documentos disponibles en [green
 <?php
 
 use Greenter\Xml\Parser\InvoiceParser;
+use Greenter\Xml\Parser\PerceptionParser;
 require 'vendor/autoload.php';
 
 $parser = new InvoiceParser();
 $xml = file_get_contents('20000000001-01-F001-1.xml');
-$invoice = $parser->parse($xml); // get an invoice.
+$factura = $parser->parse($xml);
 
-var_dump($invoice);
+var_dump($factura);
+
+$parser = new InvoiceParser();
+$xml = file_get_contents('20000000001-03-B001-1.xml');
+$boleta = $parser->parse($xml);
+
+var_dump($boleta);
+
+$parser = new PerceptionParser();
+$xml = file_get_contents('20000000001-40-P001-1.xml');
+$percepcion = $parser->parse($xml);
+
+var_dump($percepcion);
+
 ```
 
-También puedes crear tu propia versión, implementando [`DocumentParserInterface`].
+También puedes crear tu propia versión, implementando `DocumentParserInterface`.
 
 ```php
 <?php
