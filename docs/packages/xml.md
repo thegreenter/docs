@@ -14,16 +14,16 @@ composer require greenter/xml
 ## Documentos
 Los documentos disponibles en este paquete son:
 
-Documento UBL |       Builder       |     Comprobante      |
---------------|---------------------|----------------------|
- Invoice      | `InvoiceBuilder`    | Factura, Boleta      |
- CreditNote   | `NoteBuilder`       | Nota de Crédito      |
- DebitNote    | `NoteBuilder`       | Nota de Débito       |
- Summary      | `SummaryBuilder`    | Resumen diario       |
- Voided       | `VoidedBuilder`     | Comunicación de Baja |
- Despatch     | `DespatchBuilder`   | Guía de Remisión     |
- Retention    | `RetentionBuilder`  | Retención            |
- Perception   | `PerceptionBuilder` | Percepción           |
+Documento UBL |       Builder       |     Comprobante                 |
+--------------|---------------------|---------------------------------|
+ Invoice      | `InvoiceBuilder`    | Factura, Boleta de Venta        |
+ CreditNote   | `NoteBuilder`       | Nota de Crédito                 |
+ DebitNote    | `NoteBuilder`       | Nota de Débito                  |
+ Summary      | `SummaryBuilder`    | Resumen diario                  |
+ Voided       | `VoidedBuilder`     | Comunicación de Baja, Reversion |
+ Despatch     | `DespatchBuilder`   | Guía de Remisión                |
+ Retention    | `RetentionBuilder`  | Retención                       |
+ Perception   | `PerceptionBuilder` | Percepción                      |
 
 ## Uso
 
