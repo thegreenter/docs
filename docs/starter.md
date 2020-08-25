@@ -1,12 +1,12 @@
 # Empezando con Greenter
 
-En este primero ejemplo, veremos el flujo básico del proceso de facturación electrónica, desde la elaboración del comprobante electrónico (archivo XML), la inclusión de la firma digital, y posterior envió a SUNAT, además de la lectura del CDR[^1] (si el comprobante ha sido aceptado o rechazado).
+En este primero ejemplo, veremos el flujo básico del proceso de facturación electrónica, desde la elaboración del comprobante electrónico (archivo XML), la inclusión de la firma digital, y posterior envió a SUNAT, además de la lectura del CDR[^1].
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/thegreenter/firststeps)
 
 
 ## Instalación
-La forma mas facil de instalar grenter es utilizando [composer](https://getcomposer.org/).
+La forma mas fácil de instalar grenter es utilizando [composer](https://getcomposer.org/).
 ```bash
 composer require greenter/lite
 ```
@@ -25,16 +25,11 @@ composer require greenter/lite
     - [cpe.sunat.gob.pe](https://cpe.sunat.gob.pe/) - Página oficial de SUNAT
 
 ## Configuración
-Para firmar nuestro comprobante electrónico en este ejemplo, utilizaremos este [certificado de prueba](https://raw.githubusercontent.com/thegreenter/xmldsig/master/tests/certificate.pem), y para conectarnos a los servicios `BETA` de SUNAT, usaremos las credenciales **Clave SOL** por defecto.
+Para firmar nuestro comprobante electrónico utilizaremos este [certificado de prueba](https://raw.githubusercontent.com/thegreenter/xmldsig/master/tests/certificate.pem), y para conectarnos a los servicios `BETA` de SUNAT, usaremos las credenciales **Clave SOL** por defecto.
 
 - RUC: `20000000001`
 - Usuario: `MODDATOS`
 - Contraseña: `moddatos`
-
-!!! info "PKCS#12"
-
-    Si cuenta con un certificado `.p12` or `.pfx`, para convertirlo a formato .PEM necesita
-    la clave y seguir el siguiente [ejemplo](https://github.com/thegreenter/xmldsig/blob/master/CONVERT.md#convert-to-pem)
     
 Crearemos el archivo `config.php` donde configuraremos el certificado digital, la ruta del servicio y las credenciales (Clave SOL) a utilizar:
 ```php
@@ -50,9 +45,31 @@ $see->setClaveSOL('20000000001', 'MODDATOS', 'moddatos');
 return $see;
 ```
 
+??? info "Certificado .PFX - PKCS#12"
+
+    Si cuentas con un certificado `.p12` ó `.pfx`, puedes configurar el certificado con el siguiente código:
+    
+    ```php
+    <?php
+    use Greenter\XMLSecLibs\Certificate\X509Certificate;
+    use Greenter\XMLSecLibs\Certificate\X509ContentType;
+    
+    // ...
+
+    $pfx = file_get_contents('mycert.pfx');
+    $password = 'YOUR-PASSWORD';
+
+    $certificate = new X509Certificate($pfx, $password);
+
+    $see->setCertificate($certificate->export(X509ContentType::PEM));
+
+    // ...
+    ```
+
+
 ## Definición del comprobante
 
-Para el ejemplo, el comprobante a utilizar será una factura gravada con el siguiente detalles.
+Para el ejemplo, el comprobante a utilizar será una factura gravada con el siguiente detalle.
 
 
 | Global                 |              |
@@ -78,7 +95,7 @@ Para el ejemplo, el comprobante a utilizar será una factura gravada con el sigu
 | Cantidad               | 2                  |
 | Valor unitario         | S/ 50.00           |
 | Valor venta            | S/ 100.00          |
-| Tipo de afectación IGV | Gravado - onerosa  |
+| Tipo de afectación IGV | Gravado (10)       |
 | IGV                    | S/ 18.00           |
 | Total Impuestos        | S/ 18.00           |
 | Precio unitario        | S/ 59.00           |
@@ -221,22 +238,10 @@ if ($code === 0) {
     echo 'Excepción';
 }
 
-echo $cdr->getDescription();
+echo $cdr->getDescription().PHP_EOL;
 ```
 
 > Más detalles sobre que hacer si una factura fue observada o rechazada, [aquí](https://greenter.dev/faq/#facturas). 
-
-Estructura del proyecto
-
-```text
-/
-├── vendor/
-├── certificate.pem
-├── composer.json
-├── config.php
-├── factura.php
-
-```
 
 ## Ejecutar
 Finalmente ejecutaremos el script desde la linea de comandos.
@@ -247,14 +252,29 @@ y si todo sale bien obtendremos como respuesta.
 
 !!! success "Exito!"
 
+    ESTADO: ACEPTADA     
     La Factura numero F001-1, ha sido aceptada
+
+Estructura finald del proyecto de ejemplo:
+
+```text
+/
+├── vendor/
+├── certificate.pem
+├── composer.json
+├── config.php
+├── factura.php
+├── 20123456789-01-F001-1.xml
+├── R-20123456789-01-F001-1.zip
+
+```
 
 Este ejemplo puedes encontrarlo en [@thegreenter/firststeps](https://github.com/thegreenter/firststeps).
 
 ## ¿Que sigue?
 - [Detalles de uso de greenter](https://greenter.dev/usage/)
 - [Ejemplos de otros comprobantes electrónicos](https://greenter.dev/examples/exonerada/)
-- [Revisar los paquetes relacionados de greenter](https://greenter.dev/packages/xml/)
+- [Revisar los paquetes que componen greenter](https://greenter.dev/packages/xml/)
 
 ## Comentarios
 
