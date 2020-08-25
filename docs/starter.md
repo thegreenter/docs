@@ -52,9 +52,36 @@ return $see;
 
 ## Definición del comprobante
 
-El comprobante en que nos basaremos para el ejemplo, será una factura gravada con los siguientes detalles.
+Para el ejemplo, el comprobante a utilizar será una factura gravada con el siguiente detalles.
 
 
+| Global                 |              |
+|------------------------|-------------:|
+| Numero                 | F001-1       |
+| Fecha de Emisión       | 21/07/2020   |
+| Hora de Emisión        | 13:05        |
+| Moneda                 | Sol (PEN)    |
+| RUC de Emisor          | 20123456789  |
+| RUC de Receptor        | 20000000001  |
+| Operaciones Gravadas   | S/ 100.00    |
+| Valor Venta            | S/ 100.00    |
+| IGV                    | S/ 18.00     |
+| Total Impuestos        | S/ 18.00     |
+| Importe Total          | S/ 118.00    |
+
+
+| Detalle                |                    |
+|------------------------|-------------------:|
+| Codigo                 | P001               |
+| Descripcíon            | Tijeraas           |
+| Unidad de Medida       | Unidad (NIU)       |
+| Cantidad               | 2                  |
+| Valor unitario         | S/ 50.00           |
+| Valor venta            | S/ 100.00          |
+| Tipo de afectación IGV | Gravado, oneroso   |
+| IGV                    | S/ 18.00           |
+| Total Impuestos        | S/ 18.00           |
+| Precio unitario        | S/ 59.00           |
 
 
 ## Factura Electrónica
@@ -78,7 +105,7 @@ $see = require __DIR__.'/config.php';
 $client = new Client();
 $client->setTipoDoc('6')
     ->setNumDoc('20000000001')
-    ->setRznSocial('EMPRESA 1');
+    ->setRznSocial('EMPRESA X');
 
 // Emisor
 $address = new Address();
@@ -86,23 +113,23 @@ $address->setUbigueo('150101')
     ->setDepartamento('LIMA')
     ->setProvincia('LIMA')
     ->setDistrito('LIMA')
-    ->setUrbanizacion('NONE')
-    ->setDireccion('AV LS');
+    ->setUrbanizacion('-')
+    ->setDireccion('Av. Villa Nueva 221');
 
 $company = new Company();
-$company->setRuc('20000000001')
-    ->setRazonSocial('EMPRESA SAC')
-    ->setNombreComercial('EMPRESA')
+$company->setRuc('20123456789')
+    ->setRazonSocial('GREEN SAC')
+    ->setNombreComercial('GREEN')
     ->setAddress($address);
 
 // Venta
 $invoice = (new Invoice())
     ->setUblVersion('2.1')
-    ->setTipoOperacion('0101') // Catalog. 51
-    ->setTipoDoc('01')
+    ->setTipoOperacion('0101') // Venta - Catalog. 51
+    ->setTipoDoc('01') // Factura - Catalog.  
     ->setSerie('F001')
     ->setCorrelativo('1')
-    ->setFechaEmision(new DateTime())
+    ->setFechaEmision(new DateTime('2020-08-24 13:05:00'))
     ->setTipoMoneda('PEN')
     ->setClient($client)
     ->setMtoOperGravadas(100.00)
@@ -128,7 +155,7 @@ $item = (new SaleDetail())
     ->setMtoPrecioUnitario(59.00);
 
 $legend = (new Legend())
-    ->setCode('1000')
+    ->setCode('1000') // Catalog. 51
     ->setValue('SON DOSCIENTOS TREINTA Y SEIS CON 00/100 SOLES');
 
 $invoice->setDetails([$item])
