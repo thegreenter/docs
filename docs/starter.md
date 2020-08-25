@@ -1,6 +1,6 @@
 # Empezando con Greenter
 
-En este primero ejemplo, veremos el flujo básico del proceso de facturación electrónica, desde la elaboración del comprobante electrónico (archivo XML), la inclusión de la firma digital, y posterior envió a SUNAT, además de la lectura del CDR (si el comprobante ha sido aceptado o rechazado).
+En este primero ejemplo, veremos el flujo básico del proceso de facturación electrónica, desde la elaboración del comprobante electrónico (archivo XML), la inclusión de la firma digital, y posterior envió a SUNAT, además de la lectura del CDR[^1] (si el comprobante ha sido aceptado o rechazado).
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/thegreenter/firststeps)
 
@@ -49,6 +49,13 @@ $see->setClaveSOL('20000000001', 'MODDATOS', 'moddatos');
 
 return $see;
 ```
+
+## Definición del comprobante
+
+El comprobante en que nos basaremos para el ejemplo, será una factura gravada con los siguientes detalles.
+
+
+
 
 ## Factura Electrónica
 
@@ -176,3 +183,6 @@ Este ejemplo puedes encontrarlo en [@thegreenter/firststeps](https://github.com/
 ## Comentarios
 
 Pueden unirse a 👋 [Greenter Community](https://community.greenter.dev/).
+
+[^1]:
+    Comprobante de Recepción (CDR), es un archivo xml que contiene la respuesta de SUNAT, al envío previo de un comprobante electrónico, en ella se indica si un comprobante ha sido aceptado, aceptado con observaciones o rechazado.
