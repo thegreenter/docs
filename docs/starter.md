@@ -78,7 +78,7 @@ Para el ejemplo, el comprobante a utilizar será una factura gravada con el sigu
 | Cantidad               | 2                  |
 | Valor unitario         | S/ 50.00           |
 | Valor venta            | S/ 100.00          |
-| Tipo de afectación IGV | Gravado, oneroso   |
+| Tipo de afectación IGV | Gravado - onerosa  |
 | IGV                    | S/ 18.00           |
 | Total Impuestos        | S/ 18.00           |
 | Precio unitario        | S/ 59.00           |
@@ -114,7 +114,8 @@ $address->setUbigueo('150101')
     ->setProvincia('LIMA')
     ->setDistrito('LIMA')
     ->setUrbanizacion('-')
-    ->setDireccion('Av. Villa Nueva 221');
+    ->setDireccion('Av. Villa Nueva 221')
+    ->setCodLocal('0000'); // Codigo de establecimiento asignado por SUNAT, 0000 de lo contrario.
 
 $company = new Company();
 $company->setRuc('20123456789')
@@ -126,11 +127,12 @@ $company->setRuc('20123456789')
 $invoice = (new Invoice())
     ->setUblVersion('2.1')
     ->setTipoOperacion('0101') // Venta - Catalog. 51
-    ->setTipoDoc('01') // Factura - Catalog.  
+    ->setTipoDoc('01') // Factura - Catalog. 01 
     ->setSerie('F001')
     ->setCorrelativo('1')
     ->setFechaEmision(new DateTime('2020-08-24 13:05:00'))
-    ->setTipoMoneda('PEN')
+    ->setTipoMoneda('PEN') // Sol - Catalog. 02
+    ->setCompany($company)
     ->setClient($client)
     ->setMtoOperGravadas(100.00)
     ->setMtoIGV(18.00)
@@ -138,21 +140,22 @@ $invoice = (new Invoice())
     ->setValorVenta(100.00)
     ->setSubTotal(118.00)
     ->setMtoImpVenta(118.00)
-    ->setCompany($company);
+    ;
 
 $item = (new SaleDetail())
     ->setCodProducto('P001')
-    ->setUnidad('NIU')
+    ->setUnidad('NIU') // Unidad - Catalog. 03
     ->setCantidad(2)
     ->setDescripcion('PRODUCTO 1')
     ->setMtoBaseIgv(100)
     ->setPorcentajeIgv(18.00) // 18%
     ->setIgv(18.00)
-    ->setTipAfeIgv('10')
+    ->setTipAfeIgv('10') // Gravado Op. Onerosa - Catalog. 07
     ->setTotalImpuestos(18.00)
     ->setMtoValorVenta(100.00)
     ->setMtoValorUnitario(50.00)
-    ->setMtoPrecioUnitario(59.00);
+    ->setMtoPrecioUnitario(59.00)
+    ;
 
 $legend = (new Legend())
     ->setCode('1000') // Catalog. 51
@@ -161,21 +164,63 @@ $legend = (new Legend())
 $invoice->setDetails([$item])
         ->setLegends([$legend]);
 
+```
+
+## Envío a SUNAT
+
+En el mismo archivo `factura.php` agregaremos el código de abajo, el método `send` envuelve varios procesos en si, primero genera el XML, lo firma digitalmente, lo envía al servició de SUNAT y procesa la respuesta (CDR).
+
+```php
+<?php
+
 $result = $see->send($invoice);
 
-// Guardar XML
+// Guardar XML firmado digitalmente.
 file_put_contents($invoice->getName().'.xml',
                   $see->getFactory()->getLastXml());
+
+// Verificamos que la conexión con SUNAT fue exitosa.
 if (!$result->isSuccess()) {
-    // Si hubo error al conectarse al servicio de SUNAT.
+    // Mostrar error al conectarse a SUNAT.
     var_dump($result->getError());
     exit();
 }
 
-echo $result->getCdrResponse()->getDescription();
-// Guardar CDR
+// Guardamos el CDR
 file_put_contents('R-'.$invoice->getName().'.zip', $result->getCdrZip());
+
 ```
+
+## Lectura del CDR
+Finalmente para saber si nuestro comprobante fue procesado correctamente y ha sido aceptado por SUNAT, necesitamos leer la informacíon contenida en el CDR[^1].
+
+```php
+<?php
+/*
+* file: factura.php 
+*/
+
+$cdr = $result->getCdrResponse()
+
+$code = (int)$cdr->getCode();
+
+if ($code === 0) {
+    echo 'ESTADO: ACEPTADA'.PHP_EOL;
+} else if ($code >= 4000) {
+    echo 'ESTADO: ACEPTADA CON OBSERVACIONES:'.PHP_EOL;
+    var_dump($cdr->getNotes());
+} else if ($code >= 2000 && $code <= 3999) {
+    echo 'ESTADO: RECHAZADA'.PHP_EOL;
+} else {
+    /* Esto no debería darse */
+    /*code: 0100 a 1999 */
+    echo 'Excepción';
+}
+
+echo $cdr->getDescription();
+```
+
+> Más detalles sobre que hacer si una factura fue observada o rechazada, [aquí](https://greenter.dev/faq/#facturas). 
 
 Estructura del proyecto
 
