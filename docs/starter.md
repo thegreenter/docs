@@ -273,7 +273,7 @@ Este ejemplo puedes encontrarlo en [@thegreenter/firststeps](https://github.com/
 
 ## ¿Que sigue?
 - [Detalles de uso de greenter](https://greenter.dev/usage/)
-- [Ejemplos de otros comprobantes electrónicos](https://greenter.dev/examples/exonerada/)
+- [Ejemplos de comprobantes electrónicos](https://github.com/thegreenter/demo/tree/master/examples)
 - [Revisar los paquetes que componen greenter](https://greenter.dev/packages/xml/)
 
 ## Comentarios
