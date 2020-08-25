@@ -1,5 +1,7 @@
 # Empezando con Greenter
 
+En este primero ejemplo, veremos el flujo básico del proceso de facturación electrónica, desde la elaboración del comprobante electrónico (archivo XML), la inclusión de la firma digital, y posterior envió a SUNAT, además de la lectura del CDR (si el comprobante ha sido aceptado o rechazado).
+
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/thegreenter/firststeps)
 
 
