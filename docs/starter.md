@@ -158,7 +158,7 @@ $item = (new SaleDetail())
     ;
 
 $legend = (new Legend())
-    ->setCode('1000') // Catalog. 51
+    ->setCode('1000') // Monto en letras - Catalog. 52
     ->setValue('SON DOSCIENTOS TREINTA Y SEIS CON 00/100 SOLES');
 
 $invoice->setDetails([$item])
