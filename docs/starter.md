@@ -168,6 +168,11 @@ y si todo sale bien obtendremos como respuesta.
 
 Este ejemplo puedes encontrarlo en [@thegreenter/firststeps](https://github.com/thegreenter/firststeps).
 
+## ¿Que sigue?
+- [Detalles de uso de greenter](https://greenter.dev/usage/)
+- [Ejemplos de otros comprobantes electrónicos](https://greenter.dev/examples/exonerada/)
+- [Revisar los paquetes relacionados de greenter](https://greenter.dev/packages/xml/)
+
 ## Comentarios
 
 Pueden unirse a 👋 [Greenter Community](https://community.greenter.dev/).
