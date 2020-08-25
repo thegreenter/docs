@@ -166,6 +166,8 @@ $invoice->setDetails([$item])
 
 ```
 
+Los catálogos que se mencionan en los comentarios del código se encuentran en la _Reglas de Validaciones de SUNAT_, puedes obtener la última versión en la [página oficial de SUNAT](https://cpe.sunat.gob.pe/node/88#item-1).
+
 ## Envío a SUNAT
 
 En el mismo archivo `factura.php` agregaremos el código de abajo, el método `send` envuelve varios procesos en si, primero genera el XML, lo firma digitalmente, lo envía al servició de SUNAT y procesa la respuesta (CDR).
@@ -182,7 +184,8 @@ file_put_contents($invoice->getName().'.xml',
 // Verificamos que la conexión con SUNAT fue exitosa.
 if (!$result->isSuccess()) {
     // Mostrar error al conectarse a SUNAT.
-    var_dump($result->getError());
+    echo 'Codigo Error: '.$result->getError()->getCode();
+    echo 'Mensaje Error: '.$result->getError()->getMessage();
     exit();
 }
 
@@ -190,6 +193,7 @@ if (!$result->isSuccess()) {
 file_put_contents('R-'.$invoice->getName().'.zip', $result->getCdrZip());
 
 ```
+Para saber como actuar según el código de error que SUNAT devuelve, es muy importante revisar las [Reglas de Validación](https://cpe.sunat.gob.pe/node/88#item-1), allí encontraremos todas las validaciones que SUNAT aplica a los diferentes comprobantes electrónicos disponibles, además de lista de catálogos y la lista completa de codigos de error.
 
 ## Lectura del CDR
 Finalmente para saber si nuestro comprobante fue procesado correctamente y ha sido aceptado por SUNAT, necesitamos leer la informacíon contenida en el CDR[^1].
@@ -200,7 +204,7 @@ Finalmente para saber si nuestro comprobante fue procesado correctamente y ha si
 * file: factura.php 
 */
 
-$cdr = $result->getCdrResponse()
+$cdr = $result->getCdrResponse();
 
 $code = (int)$cdr->getCode();
 
