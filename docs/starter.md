@@ -23,7 +23,7 @@ composer require greenter/lite
     - [cpe.sunat.gob.pe](https://cpe.sunat.gob.pe/) - Página oficial de SUNAT
 
 ## Configuración
-En este ejemplo para firmar los comprobantes electrónicos utilizaremos este [certificado](https://raw.githubusercontent.com/thegreenter/xmldsig/master/tests/certificate.pem), y para conectarnos a los servicios de SUNAT, utilizaremos las credenciales **Clave SOL** que nos proporciona SUNAT en su documentación:
+Para firmar nuestro comprobante electrónico en este ejemplo, utilizaremos este [certificado de prueba](https://raw.githubusercontent.com/thegreenter/xmldsig/master/tests/certificate.pem), y para conectarnos a los servicios `BETA` de SUNAT, usaremos las credenciales **Clave SOL** por defecto.
 
 - RUC: `20000000001`
 - Usuario: `MODDATOS`
@@ -34,7 +34,7 @@ En este ejemplo para firmar los comprobantes electrónicos utilizaremos este [ce
     Si cuenta con un certificado `.p12` or `.pfx`, para convertirlo a formato .PEM necesita
     la clave y seguir el siguiente [ejemplo](https://github.com/thegreenter/xmldsig/blob/master/CONVERT.md#convert-to-pem)
     
-Crearemos el archivo `config.php` donde configuraremos la ruta del servicio, el certificado digital y las credenciales (Clave SOL) para conectarnos al servicio **BETA** de SUNAT:
+Crearemos el archivo `config.php` donde configuraremos el certificado digital, la ruta del servicio y las credenciales (Clave SOL) a utilizar:
 ```php
 <?php
 use Greenter\Ws\Services\SunatEndpoints;
@@ -47,13 +47,10 @@ $see->setClaveSOL('20000000001', 'MODDATOS', 'moddatos');
 
 return $see;
 ```
-> En el ambiente de producción lo recomendable es crear un usuario secundario con solo permisos para comprobantes electrónicos.
 
 ## Factura Electrónica
 
-> Para este ejemplo se usará la version **UBL 2.1**.
-
-Crearemos nuestra primera factura electrónica, para ello en nuevo archivo `factura.php` agregaremos el siguiente código:
+Crearemos nuestra primera factura electrónica siguiendo el estándar [UBL 2.1](https://github.com/thegreenter/ubl-validator/blob/0962ca6a30de609851d83965b8401a7983bc56b7/src/xsd/2.1/maindoc/UBL-Invoice-2.1.xsd), en nuevo archivo `factura.php` agregaremos el siguiente código:
 ```php
 <?php
 
@@ -167,7 +164,7 @@ y si todo sale bien obtendremos como respuesta.
 
     La Factura numero F001-1, ha sido aceptada
 
-Este ejemplo puede encontrarlo en https://github.com/thegreenter/firststeps.
+Este ejemplo puedes encontrarlo en [@thegreenter/firststeps](https://github.com/thegreenter/firststeps).
 
 ## Comentarios
 
