@@ -2,9 +2,6 @@
 
 Este ejemplo muestra la creación del XML para una boleta de venta electrónica, empleando el estándar UBL 2.1
 
-!!! info
-    Según normativa de SUNAT, las boletas electronicas se envian mediante el resumen diario. Para propósitos de prueba y validar el xml generado puede hacer uso del servicio beta.
-
 ## Ejemplo
 ```php
 <?php
