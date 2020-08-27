@@ -42,7 +42,7 @@ $company->setRuc('20000000001')
 $invoice = (new Invoice())
     ->setUblVersion('2.1')
     ->setTipoOperacion('0101') // Catalog. 51
-    ->setTipoDoc('01')
+    ->setTipoDoc('03')
     ->setSerie('B001')
     ->setCorrelativo('1')
     ->setFechaEmision(new DateTime())
@@ -72,7 +72,7 @@ $item = (new SaleDetail())
 
 $legend = (new Legend())
     ->setCode('1000')
-    ->setValue('SON DOSCIENTOS TREINTA Y SEIS CON 00/100 SOLES');
+    ->setValue('SON CIENTO DIECIOCHO CON 00/100 SOLES');
 
 $invoice->setDetails([$item])
         ->setLegends([$legend]);
