@@ -137,7 +137,7 @@ bajo la normativa dispuesta por SUNAT
 <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=nv>$code</span> <span class=o>&gt;=</span> <span class=mi>2000</span> <span class=o>&amp;&amp;</span> <span class=nv>$code</span> <span class=o>&lt;=</span> <span class=mi>3999</span><span class=p>)</span> <span class=p>{</span>
     <span class=k>echo</span> <span class=s1>&#39;ESTADO: RECHAZADA&#39;</span><span class=o>.</span><span class=nx>PHP_EOL</span><span class=p>;</span>
 <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-    <span class=cm>/* Esto no debería darse */</span>
+    <span class=cm>/* Esto no debería darse, pero si ocurre, es un CDR inválido que debería tratarse como un error-excepción. */</span>
     <span class=cm>/*code: 0100 a 1999 */</span>
     <span class=k>echo</span> <span class=s1>&#39;Excepción&#39;</span><span class=p>;</span>
 <span class=p>}</span>
