@@ -4,7 +4,7 @@ SUNAT les da la posibilidad de emitir un comprobante fisico, como anteriormente 
 
 Para informar a SUNAT de estos comprobantes, a partir del **01-09-2018** se enviá de la misma forma como se hace con
 los comprobantes electrónicos.
-> Las boletas por contingencia se siguen enviando empleando el resumen diario de boletas.
+> Las boletas por contingencia se pueden seguir enviando mediante el resumen diario de boletas.
 
 
 ## Representación Impresa
