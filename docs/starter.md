@@ -233,7 +233,7 @@ if ($code === 0) {
 } else if ($code >= 2000 && $code <= 3999) {
     echo 'ESTADO: RECHAZADA'.PHP_EOL;
 } else {
-    /* Esto no debería darse */
+    /* Esto no debería darse, pero si ocurre, es un CDR inválido que debería tratarse como un error-excepción. */
     /*code: 0100 a 1999 */
     echo 'Excepción';
 }
