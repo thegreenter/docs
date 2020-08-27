@@ -53,6 +53,6 @@ $invoice->setDetails([$detail])
     ->setLegends([
         (new Legend())
             ->setCode('1000')
-            ->setValue('SON DOSCIENTOS TREINTA Y SEIS CON OO/100 SOLES')
+            ->setValue('SON DOSCIENTOS DOCE CON 40/100 SOLES')
     ]);
 ```
