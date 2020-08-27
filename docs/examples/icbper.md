@@ -4,64 +4,64 @@
 
 ## Código
 
-```php hl_lines="19 51 52"
+```php hl_lines="19 54 55"
 <?php
 use Greenter\Model\Sale\Invoice;
 use Greenter\Model\Sale\Legend;
 use Greenter\Model\Sale\SaleDetail;
 
 $invoice = new Invoice();
-$invoice->setFecVencimiento(new \DateTime())
+$invoice
     ->setUblVersion('2.1')
     ->setTipoOperacion('0101')
     ->setTipoDoc('01')
     ->setSerie('F001')
-    ->setCorrelativo('123')
+    ->setCorrelativo('129')
     ->setFechaEmision(new \DateTime())
     ->setTipoMoneda('PEN')
     ->setClient($this->getClient())
     ->setCompany($this->getCompany())
     ->setMtoOperGravadas(200.20)
     ->setMtoIGV(36.04)
-    ->setIcbper(0.40)
-    ->setTotalImpuestos(36.44)
+    ->setIcbper(0.80)
+    ->setTotalImpuestos(36.84)
     ->setValorVenta(200.20)
-    ->setSubTotal(236.64)
-    ->setRedondeo(0.36)
+    ->setSubTotal(237.04)
+    ->setRedondeo(0.04)
     ->setMtoImpVenta(237);
 
-    $detail = new SaleDetail();
-    $detail
-        ->setCodProducto('P001')
-        ->setUnidad('NIU')
-        ->setCantidad(2)
-        ->setDescripcion('PRODUCTO 1')
-        ->setMtoBaseIgv(200.00)
-        ->setPorcentajeIgv(18.0)
-        ->setIgv(36)
-        ->setTotalImpuestos(36)
-        ->setTipAfeIgv('10')
-        ->setMtoValorVenta(200)
-        ->setMtoValorUnitario(100)
-        ->setMtoPrecioUnitario(118);
-    
-    $bolsa = new SaleDetail();
-    $bolsa
-        ->setCodProducto('P002')
-        ->setUnidad('NIU')
-        ->setCantidad(4)
-        ->setDescripcion('BOLSA DE PLASTICO')
-        ->setMtoValorUnitario(0.05)
-        ->setMtoPrecioUnitario(0.059)
-        ->setMtoValorVenta(0.20)
-        ->setTipAfeIgv('10')
-        ->setMtoBaseIgv(0.20)
-        ->setPorcentajeIgv(18.0)
-        ->setIgv(0.04)
-        ->setIcbper(0.40) // (cantidad)*(factor ICBPER)
-        ->setFactorIcbper(0.10)
-        ->setTotalImpuestos(0.44)
-    ;
+$detail = new SaleDetail();
+$detail
+    ->setCodProducto('P001')
+    ->setUnidad('NIU')
+    ->setCantidad(2)
+    ->setDescripcion('PRODUCTO 1')
+    ->setMtoBaseIgv(200.00)
+    ->setPorcentajeIgv(18.0)
+    ->setIgv(36)
+    ->setTotalImpuestos(36)
+    ->setTipAfeIgv('10')
+    ->setMtoValorVenta(200)
+    ->setMtoValorUnitario(100)
+    ->setMtoPrecioUnitario(118);
+
+$detailBolsa = new SaleDetail();
+$detailBolsa
+    ->setCodProducto('P002')
+    ->setUnidad('NIU')
+    ->setCantidad(4)
+    ->setDescripcion('BOLSA DE PLASTICO')
+    ->setMtoValorUnitario(0.05)
+    ->setMtoPrecioUnitario(0.059)
+    ->setMtoValorVenta(0.20)
+    ->setTipAfeIgv('10')
+    ->setMtoBaseIgv(0.20)
+    ->setPorcentajeIgv(18.0)
+    ->setIgv(0.04)
+    ->setIcbper(0.80) // (cantidad)*(factor ICBPER)
+    ->setFactorIcbper(0.20)
+    ->setTotalImpuestos(0.84)
+;
 
 $invoice->setDetails([$detail, $bolsa])
     ->setLegends([
@@ -72,7 +72,7 @@ $invoice->setDetails([$detail, $bolsa])
 ```
 
 
-## Monto ICBPER
+## Factor ICBPER
 
 La cuantía del impuesto al consumo de las bolsas de plástico es gradual y se aplica por la adquisición unitaria de bolsas de plástico, de acuerdo con el siguiente cronograma: 
 
