@@ -14,6 +14,11 @@ composer require greenter/ws
 !!! warning "Requerimientos"
     Se necesitar tener habilitado las extensiones `soap` y `zip` en `php.ini`
 
+    ```ini
+    extension=soap
+    extension=zip
+    ```
+
 ## Uso
 Para este ejemplo necesitamos un documento XML firmado, y para autenticarnos en los servicios de SUNAT,
 la clave SOL, que para los servicios BETA son:
