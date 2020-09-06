@@ -22,6 +22,11 @@ El proceso del resumen diario se compone de 2 fases, el envío y la obtención d
 | 98        | En Proceso               | Necesitamos volver a intentar |
 | 99        | Procesado con errores    | Disponible                    |
 
+
+!!! question "Enviar Boleta o Resumen diario"
+Desde los inicios de facturación electrónica comunicar a SUNAT sobre las boletas de venta emitidas, debian realizarse por medio de un Resumen diario, actualmente ambas opciones son permitidas[^1], puedes seguir enviando los resumen diario o enviar boletas individualmente 
+como se hace con las facturas.
+
 ## WebService
 
 !!! tip "Bad Gateway"
@@ -44,3 +49,6 @@ $parameters=[
     ]),
 ];
 ```
+
+[^1]:
+    [Resolución N.° 114 -2019/SUNAT](http://www.sunat.gob.pe/legislacion/superin/2019/114-2019.pdf): Art. 12, En caso el emisor electrónico opte por enviar a la SUNAT un ejemplar de la boleta de venta electrónica y/o de las notas electrónicas vinculadas, debe hacerlo hasta en un plazo máximo de cinco días calendarios. 

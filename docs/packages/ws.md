@@ -14,10 +14,16 @@ composer require greenter/ws
 !!! warning "Requerimientos"
     Se necesitar tener habilitado las extensiones `soap` y `zip` en `php.ini`
 
+    ```ini
+    extension=soap
+    extension=zip
+    ```
+
 ## Uso
 Para este ejemplo necesitamos un documento XML firmado, y para autenticarnos en los servicios de SUNAT,
 la clave SOL, que para los servicios BETA son:
-- User: `20000000001MODDATOS`
+
+- User: `20000000001MODDATOS` _(ruc + usuario SOL)_
 - Password: `moddatos`
 
 ```php
@@ -25,28 +31,54 @@ la clave SOL, que para los servicios BETA son:
 use Greenter\Ws\Services\SoapClient;
 use Greenter\Ws\Services\BillSender;
 
-// URL del servicio para Facturas.
+// URL del servicio para Facturas (BETA ó PRODUCCION).
 $urlService = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService';
 $soap = new SoapClient();
 $soap->setService($urlService);
-$soap->setCredentials('20000000001MODDATOS', 'moddatos'); // user = ruc + usuario sol
+$soap->setCredentials('20000000001MODDATOS', 'moddatos');
 $sender = new BillSender();
 $sender->setClient($soap);
 
 $xml = file_get_contents('factura.xml');
-$result = $sender->send(/*Nombre del comprobante*/'20000000001-01-F001-1', $xml);
+$result = $sender->send('20000000001-01-F001-1', $xml);
 
 if (!$result->isSuccess()) {
+    // Error en la conexion con el servicio de SUNAT
     var_dump($result->getError());
     return;
 }
 
 $cdr = $result->getCdrResponse();
 file_put_contents('R-20000000001-01-F001-1.zip', $cdr->getCdrZip());
-var_dump($cdr);
+
+// Verificar CDR (Factura aceptada o rechazada)
+$code = (int)$cdr->getCode();
+
+if ($code === 0) {
+    echo 'ESTADO: ACEPTADA'.PHP_EOL;
+
+} else if ($code >= 4000) {
+    echo 'ESTADO: ACEPTADA CON OBSERVACIONES:'.PHP_EOL;
+    // Mostrar observaciones
+    foreach ($cdr->getNotes() as $obs) {
+        echo 'OBS: '.$obs.PHP_EOL;
+    }
+
+} else if ($code >= 2000 && $code <= 3999) {
+    echo 'ESTADO: RECHAZADA'.PHP_EOL;
+
+} else {
+    /* Esto no debería darse, pero si ocurre, es un CDR inválido que debería tratarse como un error-excepción. */
+    /*code: 0100 a 1999 */
+    echo 'Excepción';
+}
+
+echo $cdr->getDescription().PHP_EOL;
+
 ```
 
-Esta es una referencia de las clases a utilizar segun el tipo de comprobante. 
+Esta es una referencia de las clases a utilizar segun el tipo de comprobante.
+
 - `BillSender`
     - Factura
     - Boleta de Venta
@@ -62,13 +94,11 @@ Esta es una referencia de las clases a utilizar segun el tipo de comprobante.
 ## Resumen diario
 El resumen diario tiene un proceso diferente al de las facturas, se tiene que realizar una 
 segunda petición al servicio, para obtener la respuesta de un resumen diario previamente enviado.
-En el envio inicial, SUNAT nos retorna un numero de **Ticket** que es el que usaremos para consultar el estado.  
+En el envio inicial, SUNAT nos retorna un número de **Ticket** que es el que usaremos para consultar el estado.  
 
 ```php
-
 <?php
 use Greenter\Ws\Services\SoapClient;
-use Greenter\Ws\Services\ExtService;
 use Greenter\Ws\Services\SummarySender;
 
 // URL del servicio, el mismo de Facturas.
@@ -83,11 +113,26 @@ $xml = file_get_contents('resumen.xml');
 $result = $sender->send('20000000001-RC-20200728-1', $xml);
 
 if (!$result->isSuccess()) {
+    // Error en la conexion con el servicio de SUNAT
     var_dump($result->getError());
     return;
 }
 
+// Guardar el ticket en el sistema, servira para consultar el estado del documento. 
 $ticket = $result->getTicket();
+
+echo $ticket;
+```
+
+Consultar el estado del documento enviado (Resumen diario, C. de Baja, R. Reversion).
+```php
+<?php
+
+use Greenter\Ws\Services\SoapClient;
+use Greenter\Ws\Services\ExtService;
+
+// Número de ticket obtenido en el paso anterior.
+$ticket = 'xxxxxx'; 
 
 $statusService = new ExtService();
 $statusService->setClient($soap);
@@ -95,6 +140,7 @@ $statusService->setClient($soap);
 $status = $statusService->getStatus($ticket);
 
 if (!$status->isSuccess()) {
+    // Error en la conexion con el servicio de SUNAT
     var_dump($status);
     return;
 }
@@ -103,9 +149,31 @@ $cdr = $status->getCdrResponse();
 file_put_contents('R-20000000001-RC-20200728-1.zip', $cdr->getCdrZip());
 var_dump($cdr);
 
+
+// Verificar CDR (Resumen aceptado o rechazado)
+$code = (int)$cdr->getCode();
+
+if ($code === 0) {
+    echo 'ESTADO: ACEPTADA'.PHP_EOL;
+
+} else if ($code >= 4000) {
+    echo 'ESTADO: ACEPTADA CON OBSERVACIONES:'.PHP_EOL;
+    // Mostrar observaciones
+    foreach ($cdr->getNotes() as $obs) {
+        echo 'OBS: '.$obs.PHP_EOL;
+    }
+
+} else if ($code >= 2000 && $code <= 3999) {
+    echo 'ESTADO: RECHAZADA'.PHP_EOL;
+
+} else {
+    /* Esto no debería darse, pero si ocurre, es un CDR inválido que debería tratarse como un error-excepción. */
+    /*code: 0100 a 1999 */
+    echo 'Excepción';
+}
 ```
 
-!!! info "Nota"
+!!! info "Comunicación de Baja"
 
     La comunicación de baja y resumen de reversión siguen el mismo proceso.
 
