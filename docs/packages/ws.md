@@ -35,16 +35,41 @@ $sender = new BillSender();
 $sender->setClient($soap);
 
 $xml = file_get_contents('factura.xml');
-$result = $sender->send(/*Nombre del comprobante*/'20000000001-01-F001-1', $xml);
+$result = $sender->send('20000000001-01-F001-1', $xml);
 
 if (!$result->isSuccess()) {
+    // Error en la conexion con el servicio de SUNAT
     var_dump($result->getError());
     return;
 }
 
 $cdr = $result->getCdrResponse();
 file_put_contents('R-20000000001-01-F001-1.zip', $cdr->getCdrZip());
-var_dump($cdr);
+
+// Verificar CDR (Factura aceptada o rechazada)
+$code = (int)$cdr->getCode();
+
+if ($code === 0) {
+    echo 'ESTADO: ACEPTADA'.PHP_EOL;
+
+} else if ($code >= 4000) {
+    echo 'ESTADO: ACEPTADA CON OBSERVACIONES:'.PHP_EOL;
+    // Mostrar observaciones
+    foreach ($cdr->getNotes() as $obs) {
+        echo 'OBS: '.$obs.PHP_EOL;
+    }
+
+} else if ($code >= 2000 && $code <= 3999) {
+    echo 'ESTADO: RECHAZADA'.PHP_EOL;
+
+} else {
+    /* Esto no debería darse, pero si ocurre, es un CDR inválido que debería tratarse como un error-excepción. */
+    /*code: 0100 a 1999 */
+    echo 'Excepción';
+}
+
+echo $cdr->getDescription().PHP_EOL;
+
 ```
 
 Esta es una referencia de las clases a utilizar segun el tipo de comprobante.
