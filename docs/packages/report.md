@@ -111,6 +111,8 @@ composer require greenter/htmltopdf
 !!! warning "Requerimientos"
     Este paquete require que el ejecutable `wkhtmltopdf` este descargado o instalado en el host, y que el entorno de PHP permite ejecutar aplicaciones externas, es decir que el método `exec` no se encuentre incluido en la configuración `disable_functions` del `php.ini`
 
+    Puedes seguir este [tutorial](https://www.namecheap.com/support/knowledgebase/article.aspx/9396/2219/how-to-enable-exec).
+
 ### Uso
 
 `PdfReport` sigue el patrón [Decorator](https://es.wikipedia.org/wiki/Decorator_(patr%C3%B3n_de_dise%C3%B1o)), para generar el pdf a partir de `HtmlReport` o cualquier otra clase que implemente [`ReportInterface`](https://reference.greenter.dev/Greenter/Report/ReportInterface.html).
