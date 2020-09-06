@@ -49,7 +49,7 @@ if (!$result->isSuccess()) {
 }
 
 $cdr = $result->getCdrResponse();
-file_put_contents('R-20000000001-01-F001-1.zip', $cdr->getCdrZip());
+file_put_contents('R-20000000001-01-F001-1.zip', $result->getCdrZip());
 
 // Verificar CDR (Factura aceptada o rechazada)
 $code = (int)$cdr->getCode();
@@ -146,7 +146,7 @@ if (!$status->isSuccess()) {
 }
 
 $cdr = $status->getCdrResponse();
-file_put_contents('R-20000000001-RC-20200728-1.zip', $cdr->getCdrZip());
+file_put_contents('R-20000000001-RC-20200728-1.zip', $status->getCdrZip());
 var_dump($cdr);
 
 
@@ -214,7 +214,7 @@ if ($cdr === null) {
     return;
 }
 
-file_put_contents('R-20000000001-01-F001-1.zip', $cdr->getCdrZip());
+file_put_contents('R-20000000001-01-F001-1.zip', $result->getCdrZip());
 var_dump($cdr);
 
 ```
