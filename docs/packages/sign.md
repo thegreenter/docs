@@ -10,6 +10,10 @@ composer require greenter/xmldsig
 !!! warning "Requerimientos"
     Se necesitar tener habilitado la extension `openssl` en `php.ini`
 
+    ```ini
+    extension=openssl
+    ```
+
 ## Uso
 
 Para este ejemplo necesitamos un archivo XML previamente generado, debemos asegurarnos de incluir la etiqueta `#!xml <ext:ExtensionContent/>`, que es donde se agregará el nodod de la firma.  
