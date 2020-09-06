@@ -18,7 +18,7 @@ composer require greenter/ws
 Para este ejemplo necesitamos un documento XML firmado, y para autenticarnos en los servicios de SUNAT,
 la clave SOL, que para los servicios BETA son:
 
-- User: `20000000001MODDATOS`
+- User: `20000000001MODDATOS` _(ruc + usuario SOL)_
 - Password: `moddatos`
 
 ```php
@@ -30,7 +30,7 @@ use Greenter\Ws\Services\BillSender;
 $urlService = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService';
 $soap = new SoapClient();
 $soap->setService($urlService);
-$soap->setCredentials('20000000001MODDATOS', 'moddatos'); // user = ruc + usuario sol
+$soap->setCredentials('20000000001MODDATOS', 'moddatos');
 $sender = new BillSender();
 $sender->setClient($soap);
 
