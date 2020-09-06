@@ -26,7 +26,7 @@ la clave SOL, que para los servicios BETA son:
 use Greenter\Ws\Services\SoapClient;
 use Greenter\Ws\Services\BillSender;
 
-// URL del servicio para Facturas.
+// URL del servicio para Facturas (BETA ó PRODUCCION).
 $urlService = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService';
 $soap = new SoapClient();
 $soap->setService($urlService);
