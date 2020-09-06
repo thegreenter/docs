@@ -18,6 +18,14 @@ composer require greenter/lite
     - Certificado en formato PEM
     - Credenciales Clave SOL
 
+    Se necesita tener las siguientes extensiones habilitadas en `php.ini`.
+
+    ```ini
+    extension=soap
+    extension=zip
+    extension=openssl
+    ```
+
 === "Bases"
     Para conocer más detalles sobre el proceso de Facturación Electrónica, puede consultar.
 
