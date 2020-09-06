@@ -31,6 +31,8 @@ la clave SOL, que para los servicios BETA son:
 use Greenter\Ws\Services\SoapClient;
 use Greenter\Ws\Services\BillSender;
 
+require 'vendor/autoload.php';
+
 // URL del servicio para Facturas (BETA ó PRODUCCION).
 $urlService = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService';
 $soap = new SoapClient();
@@ -101,6 +103,8 @@ En el envio inicial, SUNAT nos retorna un número de **Ticket** que es el que us
 use Greenter\Ws\Services\SoapClient;
 use Greenter\Ws\Services\SummarySender;
 
+require 'vendor/autoload.php';
+
 // URL del servicio, el mismo de Facturas.
 $urlService = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService';
 $soap = new SoapClient();
@@ -131,9 +135,16 @@ Consultar el estado del documento enviado (Resumen diario, C. de Baja, R. Revers
 use Greenter\Ws\Services\SoapClient;
 use Greenter\Ws\Services\ExtService;
 
-// Número de ticket obtenido en el paso anterior.
-$ticket = 'xxxxxx'; 
+require 'vendor/autoload.php';
 
+// Número de ticket obtenido en el paso anterior.
+$ticket = '1599432082640'; 
+
+// URL del servicio.
+$urlService = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService';
+$soap = new SoapClient();
+$soap->setService($urlService);
+$soap->setCredentials('20000000001MODDATOS', 'moddatos');
 $statusService = new ExtService();
 $statusService->setClient($soap);
 
@@ -187,6 +198,8 @@ pero tener en cuenta que solo es posible en Producción y solo esta disponible p
 
 use Greenter\Ws\Services\ConsultCdrService;
 use Greenter\Ws\Services\SoapClient;
+
+require 'vendor/autoload.php';
 
 // URL CDR de Producción
 $urlService = 'https://e-factura.sunat.gob.pe/ol-it-wsconscpegem/billConsultService';
