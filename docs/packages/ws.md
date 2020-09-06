@@ -17,6 +17,7 @@ composer require greenter/ws
 ## Uso
 Para este ejemplo necesitamos un documento XML firmado, y para autenticarnos en los servicios de SUNAT,
 la clave SOL, que para los servicios BETA son:
+
 - User: `20000000001MODDATOS`
 - Password: `moddatos`
 
