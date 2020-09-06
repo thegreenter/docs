@@ -94,13 +94,11 @@ Esta es una referencia de las clases a utilizar segun el tipo de comprobante.
 ## Resumen diario
 El resumen diario tiene un proceso diferente al de las facturas, se tiene que realizar una 
 segunda petición al servicio, para obtener la respuesta de un resumen diario previamente enviado.
-En el envio inicial, SUNAT nos retorna un numero de **Ticket** que es el que usaremos para consultar el estado.  
+En el envio inicial, SUNAT nos retorna un número de **Ticket** que es el que usaremos para consultar el estado.  
 
 ```php
-
 <?php
 use Greenter\Ws\Services\SoapClient;
-use Greenter\Ws\Services\ExtService;
 use Greenter\Ws\Services\SummarySender;
 
 // URL del servicio, el mismo de Facturas.
@@ -115,11 +113,26 @@ $xml = file_get_contents('resumen.xml');
 $result = $sender->send('20000000001-RC-20200728-1', $xml);
 
 if (!$result->isSuccess()) {
+    // Error en la conexion con el servicio de SUNAT
     var_dump($result->getError());
     return;
 }
 
+// Guardar el ticket en el sistema, servira para consultar el estado del documento. 
 $ticket = $result->getTicket();
+
+echo $ticket;
+```
+
+Consultar el estado del documento enviado (Resumen diario, C. de Baja, R. Reversion).
+```php
+<?php
+
+use Greenter\Ws\Services\SoapClient;
+use Greenter\Ws\Services\ExtService;
+
+// Número de ticket obtenido en el paso anterior.
+$ticket = 'xxxxxx'; 
 
 $statusService = new ExtService();
 $statusService->setClient($soap);
@@ -127,6 +140,7 @@ $statusService->setClient($soap);
 $status = $statusService->getStatus($ticket);
 
 if (!$status->isSuccess()) {
+    // Error en la conexion con el servicio de SUNAT
     var_dump($status);
     return;
 }
