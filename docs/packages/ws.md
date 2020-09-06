@@ -46,7 +46,8 @@ file_put_contents('R-20000000001-01-F001-1.zip', $cdr->getCdrZip());
 var_dump($cdr);
 ```
 
-Esta es una referencia de las clases a utilizar segun el tipo de comprobante. 
+Esta es una referencia de las clases a utilizar segun el tipo de comprobante.
+
 - `BillSender`
     - Factura
     - Boleta de Venta
