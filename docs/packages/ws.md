@@ -130,6 +130,28 @@ $cdr = $status->getCdrResponse();
 file_put_contents('R-20000000001-RC-20200728-1.zip', $cdr->getCdrZip());
 var_dump($cdr);
 
+
+// Verificar CDR (Resumen aceptado o rechazado)
+$code = (int)$cdr->getCode();
+
+if ($code === 0) {
+    echo 'ESTADO: ACEPTADA'.PHP_EOL;
+
+} else if ($code >= 4000) {
+    echo 'ESTADO: ACEPTADA CON OBSERVACIONES:'.PHP_EOL;
+    // Mostrar observaciones
+    foreach ($cdr->getNotes() as $obs) {
+        echo 'OBS: '.$obs.PHP_EOL;
+    }
+
+} else if ($code >= 2000 && $code <= 3999) {
+    echo 'ESTADO: RECHAZADA'.PHP_EOL;
+
+} else {
+    /* Esto no debería darse, pero si ocurre, es un CDR inválido que debería tratarse como un error-excepción. */
+    /*code: 0100 a 1999 */
+    echo 'Excepción';
+}
 ```
 
 !!! info "Nota"
