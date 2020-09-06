@@ -173,7 +173,7 @@ if ($code === 0) {
 }
 ```
 
-!!! info "Nota"
+!!! info "Comunicación de Baja"
 
     La comunicación de baja y resumen de reversión siguen el mismo proceso.
 
