@@ -30,6 +30,7 @@ nav:
       - F. ICBPER: examples/icbper.md
       - 'Boleta de Venta': examples/boleta.md
       - Contingencia: examples/contingencia.md
+      - Otros: examples/mas.md
     - Referencia:
       - greenter/xml: packages/xml.md
       - greenter/xmldsig: packages/sign.md
