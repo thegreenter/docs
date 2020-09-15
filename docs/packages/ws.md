@@ -58,12 +58,12 @@ $code = (int)$cdr->getCode();
 
 if ($code === 0) {
     echo 'ESTADO: ACEPTADA'.PHP_EOL;
-
-} else if ($code >= 4000) {
-    echo 'ESTADO: ACEPTADA CON OBSERVACIONES:'.PHP_EOL;
-    // Mostrar observaciones
-    foreach ($cdr->getNotes() as $obs) {
-        echo 'OBS: '.$obs.PHP_EOL;
+    if (count($cdr->getNotes()) > 0) {
+        echo 'INCLUYE OBSERVACIONES:'.PHP_EOL;
+        // Mostrar observaciones
+        foreach ($cdr->getNotes() as $obs) {
+            echo 'OBS: '.$obs.PHP_EOL;
+        }
     }
 
 } else if ($code >= 2000 && $code <= 3999) {
@@ -166,12 +166,12 @@ $code = (int)$cdr->getCode();
 
 if ($code === 0) {
     echo 'ESTADO: ACEPTADA'.PHP_EOL;
-
-} else if ($code >= 4000) {
-    echo 'ESTADO: ACEPTADA CON OBSERVACIONES:'.PHP_EOL;
-    // Mostrar observaciones
-    foreach ($cdr->getNotes() as $obs) {
-        echo 'OBS: '.$obs.PHP_EOL;
+    if (count($cdr->getNotes()) > 0) {
+        echo 'INCLUYE OBSERVACIONES:'.PHP_EOL;
+        // Mostrar observaciones
+        foreach ($cdr->getNotes() as $obs) {
+            echo 'OBS: '.$obs.PHP_EOL;
+        }
     }
 
 } else if ($code >= 2000 && $code <= 3999) {

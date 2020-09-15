@@ -235,9 +235,11 @@ $code = (int)$cdr->getCode();
 
 if ($code === 0) {
     echo 'ESTADO: ACEPTADA'.PHP_EOL;
-} else if ($code >= 4000) {
-    echo 'ESTADO: ACEPTADA CON OBSERVACIONES:'.PHP_EOL;
-    var_dump($cdr->getNotes());
+    if (count($cdr->getNotes()) > 0) {
+        echo 'OBSERVACIONES:'.PHP_EOL;
+        // Corregir estas observaciones en siguientes emisiones.
+        var_dump($cdr->getNotes());
+    }  
 } else if ($code >= 2000 && $code <= 3999) {
     echo 'ESTADO: RECHAZADA'.PHP_EOL;
 } else {
