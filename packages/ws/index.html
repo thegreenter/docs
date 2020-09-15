@@ -36,12 +36,12 @@ bajo la normativa dispuesta por SUNAT
 
 <span class=k>if</span> <span class=p>(</span><span class=nv>$code</span> <span class=o>===</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
     <span class=k>echo</span> <span class=s1>&#39;ESTADO: ACEPTADA&#39;</span><span class=o>.</span><span class=nx>PHP_EOL</span><span class=p>;</span>
-
-<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=nv>$code</span> <span class=o>&gt;=</span> <span class=mi>4000</span><span class=p>)</span> <span class=p>{</span>
-    <span class=k>echo</span> <span class=s1>&#39;ESTADO: ACEPTADA CON OBSERVACIONES:&#39;</span><span class=o>.</span><span class=nx>PHP_EOL</span><span class=p>;</span>
-    <span class=c1>// Mostrar observaciones</span>
-    <span class=k>foreach</span> <span class=p>(</span><span class=nv>$cdr</span><span class=o>-&gt;</span><span class=na>getNotes</span><span class=p>()</span> <span class=k>as</span> <span class=nv>$obs</span><span class=p>)</span> <span class=p>{</span>
-        <span class=k>echo</span> <span class=s1>&#39;OBS: &#39;</span><span class=o>.</span><span class=nv>$obs</span><span class=o>.</span><span class=nx>PHP_EOL</span><span class=p>;</span>
+    <span class=k>if</span> <span class=p>(</span><span class=nb>count</span><span class=p>(</span><span class=nv>$cdr</span><span class=o>-&gt;</span><span class=na>getNotes</span><span class=p>())</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>echo</span> <span class=s1>&#39;INCLUYE OBSERVACIONES:&#39;</span><span class=o>.</span><span class=nx>PHP_EOL</span><span class=p>;</span>
+        <span class=c1>// Mostrar observaciones</span>
+        <span class=k>foreach</span> <span class=p>(</span><span class=nv>$cdr</span><span class=o>-&gt;</span><span class=na>getNotes</span><span class=p>()</span> <span class=k>as</span> <span class=nv>$obs</span><span class=p>)</span> <span class=p>{</span>
+            <span class=k>echo</span> <span class=s1>&#39;OBS: &#39;</span><span class=o>.</span><span class=nv>$obs</span><span class=o>.</span><span class=nx>PHP_EOL</span><span class=p>;</span>
+        <span class=p>}</span>
     <span class=p>}</span>
 
 <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=nv>$code</span> <span class=o>&gt;=</span> <span class=mi>2000</span> <span class=o>&amp;&amp;</span> <span class=nv>$code</span> <span class=o>&lt;=</span> <span class=mi>3999</span><span class=p>)</span> <span class=p>{</span>
@@ -117,12 +117,12 @@ bajo la normativa dispuesta por SUNAT
 
 <span class=k>if</span> <span class=p>(</span><span class=nv>$code</span> <span class=o>===</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
     <span class=k>echo</span> <span class=s1>&#39;ESTADO: ACEPTADA&#39;</span><span class=o>.</span><span class=nx>PHP_EOL</span><span class=p>;</span>
-
-<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=nv>$code</span> <span class=o>&gt;=</span> <span class=mi>4000</span><span class=p>)</span> <span class=p>{</span>
-    <span class=k>echo</span> <span class=s1>&#39;ESTADO: ACEPTADA CON OBSERVACIONES:&#39;</span><span class=o>.</span><span class=nx>PHP_EOL</span><span class=p>;</span>
-    <span class=c1>// Mostrar observaciones</span>
-    <span class=k>foreach</span> <span class=p>(</span><span class=nv>$cdr</span><span class=o>-&gt;</span><span class=na>getNotes</span><span class=p>()</span> <span class=k>as</span> <span class=nv>$obs</span><span class=p>)</span> <span class=p>{</span>
-        <span class=k>echo</span> <span class=s1>&#39;OBS: &#39;</span><span class=o>.</span><span class=nv>$obs</span><span class=o>.</span><span class=nx>PHP_EOL</span><span class=p>;</span>
+    <span class=k>if</span> <span class=p>(</span><span class=nb>count</span><span class=p>(</span><span class=nv>$cdr</span><span class=o>-&gt;</span><span class=na>getNotes</span><span class=p>())</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>echo</span> <span class=s1>&#39;INCLUYE OBSERVACIONES:&#39;</span><span class=o>.</span><span class=nx>PHP_EOL</span><span class=p>;</span>
+        <span class=c1>// Mostrar observaciones</span>
+        <span class=k>foreach</span> <span class=p>(</span><span class=nv>$cdr</span><span class=o>-&gt;</span><span class=na>getNotes</span><span class=p>()</span> <span class=k>as</span> <span class=nv>$obs</span><span class=p>)</span> <span class=p>{</span>
+            <span class=k>echo</span> <span class=s1>&#39;OBS: &#39;</span><span class=o>.</span><span class=nv>$obs</span><span class=o>.</span><span class=nx>PHP_EOL</span><span class=p>;</span>
+        <span class=p>}</span>
     <span class=p>}</span>
 
 <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=nv>$code</span> <span class=o>&gt;=</span> <span class=mi>2000</span> <span class=o>&amp;&amp;</span> <span class=nv>$code</span> <span class=o>&lt;=</span> <span class=mi>3999</span><span class=p>)</span> <span class=p>{</span>
