@@ -22,7 +22,6 @@ composer require greenter/lite
 
     ```ini
     extension=soap
-    extension=zip
     extension=openssl
     ```
 
