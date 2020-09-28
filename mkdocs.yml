@@ -53,7 +53,7 @@ theme:
     - 404.html
   language: 'es'
   features:
-    - tabs
+    - navigation.tabs
   palette:
     scheme: slate
     primary: green
