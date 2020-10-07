@@ -1,11 +1,6 @@
 # Greenter en Producción
 En esta sección de indican los pasos para convertirse en Emisor Electrónico.
 
-!!! warning "UBL 2.1"
-
-    Apartir de **octubre del 2018**, los nuevos emisores electrónicos estan obligados a emitir sus comprobantes
-    empleando el estándar UBL 2.1 
-
 ## Pasos
 - Creación de usuario secundario con los permisos para Facturación Electrónica.
 - Registrar el certificado digital en el portal de SUNAT, en formato `.cer` (Public key).
