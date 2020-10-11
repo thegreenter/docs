@@ -19,7 +19,7 @@ El proceso del resumen diario se compone de 2 fases, el envío y la obtención d
 | Código    |      Descripción         |  Estado del CDR               |
 |-----------|:------------------------:|------------------------------:|
 | 0         | Procesado correctamente  | Disponible                    |
-| 98        | En Proceso               | Necesitamos volver a intentar |
+| 98        | En Proceso               | Volver a consultar            |
 | 99        | Procesado con errores    | Disponible                    |
 
 
