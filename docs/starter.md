@@ -14,7 +14,8 @@ composer require greenter/lite
 ## Requerimientos
 
 === "Técnico"
-    
+
+    - PHP `7.2` o superior
     - Certificado en formato PEM
     - Credenciales Clave SOL
 
