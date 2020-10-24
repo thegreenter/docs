@@ -97,7 +97,7 @@ Para el ejemplo, el comprobante a utilizar será una factura gravada con el sigu
 | Detalle                |                    |
 |------------------------|-------------------:|
 | Codigo                 | P001               |
-| Descripcíon            | Tijeraas           |
+| Descripcíon            | Tijeras            |
 | Unidad de Medida       | Unidad (NIU)       |
 | Cantidad               | 2                  |
 | Valor unitario         | S/ 50.00           |
