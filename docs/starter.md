@@ -174,14 +174,14 @@ $item = (new SaleDetail())
     ->setCodProducto('P001')
     ->setUnidad('NIU') // Unidad - Catalog. 03
     ->setCantidad(2)
+    ->setMtoValorUnitario(50.00)
     ->setDescripcion('PRODUCTO 1')
     ->setMtoBaseIgv(100)
     ->setPorcentajeIgv(18.00) // 18%
     ->setIgv(18.00)
     ->setTipAfeIgv('10') // Gravado Op. Onerosa - Catalog. 07
-    ->setTotalImpuestos(18.00)
+    ->setTotalImpuestos(18.00) // Suma de impuestos en el detalle
     ->setMtoValorVenta(100.00)
-    ->setMtoValorUnitario(50.00)
     ->setMtoPrecioUnitario(59.00)
     ;
 
