@@ -130,15 +130,14 @@ require __DIR__.'/vendor/autoload.php';
 $see = require __DIR__.'/config.php';
 
 // Cliente
-$client = new Client();
-$client
+$client = (new Client())
     ->setTipoDoc('6')
     ->setNumDoc('20000000001')
     ->setRznSocial('EMPRESA X');
 
 // Emisor
-$address = new Address();
-$address->setUbigueo('150101')
+$address = (new Address())
+    ->setUbigueo('150101')
     ->setDepartamento('LIMA')
     ->setProvincia('LIMA')
     ->setDistrito('LIMA')
@@ -146,8 +145,8 @@ $address->setUbigueo('150101')
     ->setDireccion('Av. Villa Nueva 221')
     ->setCodLocal('0000'); // Codigo de establecimiento asignado por SUNAT, 0000 por defecto.
 
-$company = new Company();
-$company->setRuc('20123456789')
+$company = (new Company())
+    ->setRuc('20123456789')
     ->setRazonSocial('GREEN SAC')
     ->setNombreComercial('GREEN')
     ->setAddress($address);
