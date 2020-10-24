@@ -76,7 +76,12 @@ return $see;
 
 ## Definición del comprobante
 
-Para el ejemplo, el comprobante a utilizar será una factura gravada con el siguiente detalle.
+Para el ejemplo, el comprobante a utilizar será una factura gravada, con la siguiente definición.
+
+```text
+La empresa GREEN SAC, identificada con RUC 20123456789; desea emitir 
+su primera factura electrónica N° F001-1 con la siguiente información:
+```
 
 
 | Global                 |              |
@@ -107,7 +112,6 @@ Para el ejemplo, el comprobante a utilizar será una factura gravada con el sigu
 | Total Impuestos        | S/ 18.00           |
 | Precio unitario        | S/ 59.00           |
 
-
 ## Factura Electrónica
 
 Crearemos nuestra primera factura electrónica siguiendo el estándar [UBL 2.1](https://github.com/thegreenter/ubl-validator/blob/0962ca6a30de609851d83965b8401a7983bc56b7/src/xsd/2.1/maindoc/UBL-Invoice-2.1.xsd), en nuevo archivo `factura.php` agregaremos el siguiente código:
@@ -127,7 +131,8 @@ $see = require __DIR__.'/config.php';
 
 // Cliente
 $client = new Client();
-$client->setTipoDoc('6')
+$client
+    ->setTipoDoc('6')
     ->setNumDoc('20000000001')
     ->setRznSocial('EMPRESA X');
 
@@ -139,7 +144,7 @@ $address->setUbigueo('150101')
     ->setDistrito('LIMA')
     ->setUrbanizacion('-')
     ->setDireccion('Av. Villa Nueva 221')
-    ->setCodLocal('0000'); // Codigo de establecimiento asignado por SUNAT, 0000 de lo contrario.
+    ->setCodLocal('0000'); // Codigo de establecimiento asignado por SUNAT, 0000 por defecto.
 
 $company = new Company();
 $company->setRuc('20123456789')
