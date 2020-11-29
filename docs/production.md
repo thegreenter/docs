@@ -6,7 +6,7 @@ En esta sección de indican los pasos para convertirse en Emisor Electrónico.
 - Registrar el certificado digital en el portal de SUNAT, en formato `.cer` (Public key).
 - Greenter requiere el certificado digital en formato `.pem` (Private & Public Key), si tiene un certificado `.pfx`
  puede convertirlo siguiendo esta [guía](https://github.com/thegreenter/xmldsig/blob/master/CONVERT.md).
-- Configurar la url del servicio de Producción.
+- Configurar la url del servicio de Producción (ver [Lista de servicios](https://greenter.dev/packages/ws/#servicios)).
 
 ```php hl_lines="5"
 <?php
