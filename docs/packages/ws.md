@@ -16,6 +16,7 @@ composer require greenter/ws
 
     ```ini
     extension=soap
+    extension=fileinfo
     ```
 
 ## Uso
