@@ -25,6 +25,8 @@ $invoice->setFormaPago(new FormaPagoContado());
 |Cuota 2 | 60 |
 |Fecha Pago 2 | 2020-02-17 |
 
+Ejemplo en Factura
+
 ```php
 <?php
 use Greenter\Model\Sale\Cuota;
@@ -34,6 +36,27 @@ use Greenter\Model\Sale\Invoice;
 $invoice = new Invoice();
 $invoice->setFormaPago(new FormaPagoCredito(100.00));
 $invoice->setCuotas([
+    (new Cuota())
+        ->setMonto(40.00)
+        ->setFechaPago(new DateTime('2020-02-10 00:00:00-05:00')),
+    (new Cuota())
+        ->setMonto(60.00)
+        ->setFechaPago(new DateTime('2020-02-17 00:00:00-05:00'))
+]);
+```
+
+Ejemplo en Nota de Crédito
+
+```php
+<?php
+use Greenter\Model\Sale\Cuota;
+use Greenter\Model\Sale\FormaPagos\FormaPagoCredito;
+use Greenter\Model\Sale\Note;
+
+$ncr = new Note();
+$ncr->setTipoDoc('07');
+$ncr->setFormaPago(new FormaPagoCredito(100.00));
+$ncr->setCuotas([
     (new Cuota())
         ->setMonto(40.00)
         ->setFechaPago(new DateTime('2020-02-10 00:00:00-05:00')),
