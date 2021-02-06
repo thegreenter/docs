@@ -90,6 +90,7 @@ su primera factura electrónica N° F001-1 con la siguiente información:
 | Numero                 | F001-1       |
 | Fecha de Emisión       | 21/07/2020   |
 | Hora de Emisión        | 13:05        |
+| Forma de Pago          | Contado      |
 | Moneda                 | Sol (PEN)    |
 | RUC de Emisor          | 20123456789  |
 | RUC de Receptor        | 20000000001  |
@@ -122,6 +123,7 @@ Crearemos nuestra primera factura electrónica siguiendo el estándar [UBL 2.1](
 use Greenter\Model\Client\Client;
 use Greenter\Model\Company\Company;
 use Greenter\Model\Company\Address;
+use Greenter\Model\Sale\FormaPagos\FormaPagoContado;
 use Greenter\Model\Sale\Invoice;
 use Greenter\Model\Sale\SaleDetail;
 use Greenter\Model\Sale\Legend;
@@ -159,7 +161,8 @@ $invoice = (new Invoice())
     ->setTipoDoc('01') // Factura - Catalog. 01 
     ->setSerie('F001')
     ->setCorrelativo('1')
-    ->setFechaEmision(new DateTime('2020-08-24 13:05:00'))
+    ->setFechaEmision(new DateTime('2020-08-24 13:05:00-05:00')) // Zona horaria: Lima
+    ->setFormaPago(new FormaPagoContado()) // FormaPago: Contado
     ->setTipoMoneda('PEN') // Sol - Catalog. 02
     ->setCompany($company)
     ->setClient($client)
