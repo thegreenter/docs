@@ -4,9 +4,10 @@
 
 ## Código
 
-```php hl_lines="10 26-33 57 58"
+```php hl_lines="11 28-35 59 60"
 <?php
 use Greenter\Model\Sale\Detraction;
+use Greenter\Model\Sale\FormaPagos\FormaPagoContado;
 use Greenter\Model\Sale\Invoice;
 use Greenter\Model\Sale\Legend;
 use Greenter\Model\Sale\SaleDetail;
@@ -19,6 +20,7 @@ $invoice
     ->setSerie('F001')
     ->setCorrelativo('127')
     ->setFechaEmision(new DateTime())
+    ->setFormaPago(new FormaPagoContado())
     ->setTipoMoneda('PEN')
     ->setClient($this->getClient())
     ->setCompany($this->getCompany())

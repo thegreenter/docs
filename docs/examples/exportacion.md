@@ -4,10 +4,11 @@
 
 ## Código
 
-```php hl_lines="11 18 19 20 21 23 31 40"
+```php hl_lines="12 20 21 22 23 25 33 42"
 <?php
 
 use Greenter\Model\Client\Client;
+use Greenter\Model\Sale\FormaPagos\FormaPagoContado;
 use Greenter\Model\Sale\Invoice;
 use Greenter\Model\Sale\Legend;
 use Greenter\Model\Sale\SaleDetail;
@@ -20,6 +21,7 @@ $invoice
     ->setSerie('F001')
     ->setCorrelativo('123')
     ->setFechaEmision(new \DateTime())
+    ->setFormaPago(new FormaPagoContado())
     ->setTipoMoneda('USD')
     ->setCompany($this->getCompany())
     ->setClient((new Client()) // Cliente: extranjeria o sin documentos
