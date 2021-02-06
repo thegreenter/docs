@@ -4,8 +4,9 @@
 
 ## Código
 
-```php hl_lines="17 33"
+```php hl_lines="19 35"
 <?php
+use Greenter\Model\Sale\FormaPagos\FormaPagoContado;
 use Greenter\Model\Sale\Invoice;
 use Greenter\Model\Sale\Legend;
 use Greenter\Model\Sale\SaleDetail;
@@ -18,6 +19,7 @@ $invoice->setFecVencimiento(new \DateTime())
     ->setSerie('F001')
     ->setCorrelativo('123')
     ->setFechaEmision(new \DateTime())
+    ->setFormaPago(new FormaPagoContado())
     ->setTipoMoneda('PEN')
     ->setClient($this->getClient())
     ->setCompany($this->getCompany())

@@ -4,8 +4,9 @@
 
 ## Código
 
-```php hl_lines="9 22 23 24 25 26 27 28 51 52"
+```php hl_lines="10 24 25 26 27 28 29 30 54 55"
 <?php
+use Greenter\Model\Sale\FormaPagos\FormaPagoContado;
 use Greenter\Model\Sale\Invoice;
 use Greenter\Model\Sale\Legend;
 use Greenter\Model\Sale\SaleDetail;
@@ -18,6 +19,7 @@ $invoice->setUblVersion('2.1')
     ->setSerie('F001')
     ->setCorrelativo('123')
     ->setFechaEmision(new \DateTime())
+    ->setFormaPago(new FormaPagoContado())
     ->setTipoMoneda('PEN')
     ->setClient($this->getClient())
     ->setCompany($this->getCompany())
@@ -31,7 +33,8 @@ $invoice->setUblVersion('2.1')
         ->setPorcentaje(0.02)
         ->setMtoBase(200)
         ->setMto(4.00)
-        ->setMtoTotal(204.00))
+        ->setMtoTotal(204.00)
+    )
     ->setSumOtrosCargos(4.00);
 
 $detail = new SaleDetail();
