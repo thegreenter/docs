@@ -27,6 +27,7 @@ $invoice->setFecVencimiento(new \DateTime())
     ->setMtoIGV(0)
     ->setTotalImpuestos(0)
     ->setValorVenta(200)
+    ->setSubTotal(200)
     ->setMtoImpVenta(200);
 
 $detail = new SaleDetail();

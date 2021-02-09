@@ -27,6 +27,7 @@ $invoice->setUblVersion('2.1')
     ->setMtoIGV(32.40)
     ->setTotalImpuestos(32.40)
     ->setValorVenta(180)
+    ->setSubTotal(212.40)
     ->setMtoImpVenta(212.40);
 
 $detail = new SaleDetail();
