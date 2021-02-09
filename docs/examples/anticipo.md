@@ -4,7 +4,7 @@
 
 ## Código
 
-```php hl_lines="18 19 20 21 22 23 24 30 31 32 33 34 35 36"
+```php hl_lines="24 25 26 27 28 29 30"
 <?php
 use Greenter\Model\Sale\Invoice;
 use Greenter\Model\Sale\Legend;
@@ -22,18 +22,12 @@ $invoice
     ->setTipoMoneda('PEN')
     ->setClient($this->getClient())
     ->setCompany($this->getCompany())
-    ->setDescuentos([(
-        new Charge())
-        ->setCodTipo('04') // catalog. 53
-        ->setFactor(1)
-        ->setMonto(100) // anticipo
-        ->setMontoBase(100)
-    ])
-    ->setMtoOperGravadas(100)
-    ->setMtoIGV(18)
+    ->setMtoOperGravadas(200)
+    ->setMtoIGV(36)
     ->setValorVenta(200)
-    ->setTotalImpuestos(18)
-    ->setMtoImpVenta(118)
+    ->setTotalImpuestos(36)
+    ->setSubTotal(236)
+    ->setMtoImpVenta(136) // Disminución por anticipo
     ->setAnticipos([
         (new Prepayment())
             ->setTipoDocRel('02') // catalog. 12
