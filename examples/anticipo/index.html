@@ -19,18 +19,12 @@ bajo la normativa dispuesta por SUNAT
     <span class=o>-&gt;</span><span class=na>setTipoMoneda</span><span class=p>(</span><span class=s1>&#39;PEN&#39;</span><span class=p>)</span>
     <span class=o>-&gt;</span><span class=na>setClient</span><span class=p>(</span><span class=nv>$this</span><span class=o>-&gt;</span><span class=na>getClient</span><span class=p>())</span>
     <span class=o>-&gt;</span><span class=na>setCompany</span><span class=p>(</span><span class=nv>$this</span><span class=o>-&gt;</span><span class=na>getCompany</span><span class=p>())</span>
-<span class=hll>    <span class=o>-&gt;</span><span class=na>setDescuentos</span><span class=p>([(</span>
-</span><span class=hll>        <span class=k>new</span> <span class=nx>Charge</span><span class=p>())</span>
-</span><span class=hll>        <span class=o>-&gt;</span><span class=na>setCodTipo</span><span class=p>(</span><span class=s1>&#39;04&#39;</span><span class=p>)</span> <span class=c1>// catalog. 53</span>
-</span><span class=hll>        <span class=o>-&gt;</span><span class=na>setFactor</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
-</span><span class=hll>        <span class=o>-&gt;</span><span class=na>setMonto</span><span class=p>(</span><span class=mi>100</span><span class=p>)</span> <span class=c1>// anticipo</span>
-</span><span class=hll>        <span class=o>-&gt;</span><span class=na>setMontoBase</span><span class=p>(</span><span class=mi>100</span><span class=p>)</span>
-</span><span class=hll>    <span class=p>])</span>
-</span>    <span class=o>-&gt;</span><span class=na>setMtoOperGravadas</span><span class=p>(</span><span class=mi>100</span><span class=p>)</span>
-    <span class=o>-&gt;</span><span class=na>setMtoIGV</span><span class=p>(</span><span class=mi>18</span><span class=p>)</span>
+    <span class=o>-&gt;</span><span class=na>setMtoOperGravadas</span><span class=p>(</span><span class=mi>200</span><span class=p>)</span>
+    <span class=o>-&gt;</span><span class=na>setMtoIGV</span><span class=p>(</span><span class=mi>36</span><span class=p>)</span>
     <span class=o>-&gt;</span><span class=na>setValorVenta</span><span class=p>(</span><span class=mi>200</span><span class=p>)</span>
-    <span class=o>-&gt;</span><span class=na>setTotalImpuestos</span><span class=p>(</span><span class=mi>18</span><span class=p>)</span>
-    <span class=o>-&gt;</span><span class=na>setMtoImpVenta</span><span class=p>(</span><span class=mi>118</span><span class=p>)</span>
+    <span class=o>-&gt;</span><span class=na>setTotalImpuestos</span><span class=p>(</span><span class=mi>36</span><span class=p>)</span>
+    <span class=o>-&gt;</span><span class=na>setSubTotal</span><span class=p>(</span><span class=mi>236</span><span class=p>)</span>
+    <span class=o>-&gt;</span><span class=na>setMtoImpVenta</span><span class=p>(</span><span class=mi>136</span><span class=p>)</span> <span class=c1>// Disminución por anticipo</span>
 <span class=hll>    <span class=o>-&gt;</span><span class=na>setAnticipos</span><span class=p>([</span>
 </span><span class=hll>        <span class=p>(</span><span class=k>new</span> <span class=nx>Prepayment</span><span class=p>())</span>
 </span><span class=hll>            <span class=o>-&gt;</span><span class=na>setTipoDocRel</span><span class=p>(</span><span class=s1>&#39;02&#39;</span><span class=p>)</span> <span class=c1>// catalog. 12</span>
