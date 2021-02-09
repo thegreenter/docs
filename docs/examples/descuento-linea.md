@@ -4,7 +4,7 @@
 
 ## Código
 
-```php hl_lines="31 32 33 34 35 36 37"
+```php hl_lines="32 33 34 35 36 37 38"
 <?php
 use Greenter\Model\Sale\Charge;
 use Greenter\Model\Sale\FormaPagos\FormaPagoContado;

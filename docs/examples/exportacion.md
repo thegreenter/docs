@@ -4,7 +4,7 @@
 
 ## Código
 
-```php hl_lines="12 20 21 22 23 25 33 42"
+```php hl_lines="12 20 21 22 23 25 34 43"
 <?php
 
 use Greenter\Model\Client\Client;

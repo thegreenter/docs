@@ -4,7 +4,7 @@
 
 ## Código
 
-```php hl_lines="10 24 25 26 27 28 29 30 54 55"
+```php hl_lines="10 25-31 55 56"
 <?php
 use Greenter\Model\Sale\FormaPagos\FormaPagoContado;
 use Greenter\Model\Sale\Invoice;
