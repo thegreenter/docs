@@ -79,10 +79,6 @@ extra_css:
 extra_javascript:
   - 'js/app.js'
 
-google_analytics:
-  - UA-90097417-6
-  - auto
-
 plugins:
   - search
   - minify:
