@@ -202,13 +202,12 @@ use Greenter\Ws\Services\SoapClient;
 require 'vendor/autoload.php';
 
 // URL CDR de Producción
-$urlService = 'https://e-factura.sunat.gob.pe/ol-it-wsconscpegem/billConsultService';
-$soap = new SoapClient();
-$soap->setService($urlService);
+$wsdlUrl = 'https://e-factura.sunat.gob.pe/ol-it-wsconscpegem/billConsultService?wsdl';
+$soap = new SoapClient($wsdlUrl);
 $soap->setCredentials('20000000001MODDATOS', 'moddatos');
 
 $service = new ConsultCdrService();
-$service->setClient($client);
+$service->setClient($soap);
 
 $rucEmisor = '20000000001';
 $tipoDocumento = '01'; // 01: Factura, 07: Nota de Crédito, 08: Nota de Débito
