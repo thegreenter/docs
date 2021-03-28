@@ -141,13 +141,12 @@ bajo la normativa dispuesta por SUNAT
 <span class=k>require</span> <span class=s1>&#39;vendor/autoload.php&#39;</span><span class=p>;</span>
 
 <span class=c1>// URL CDR de Producción</span>
-<span class=nv>$urlService</span> <span class=o>=</span> <span class=s1>&#39;https://e-factura.sunat.gob.pe/ol-it-wsconscpegem/billConsultService&#39;</span><span class=p>;</span>
-<span class=nv>$soap</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SoapClient</span><span class=p>();</span>
-<span class=nv>$soap</span><span class=o>-&gt;</span><span class=na>setService</span><span class=p>(</span><span class=nv>$urlService</span><span class=p>);</span>
+<span class=nv>$wsdlUrl</span> <span class=o>=</span> <span class=s1>&#39;https://e-factura.sunat.gob.pe/ol-it-wsconscpegem/billConsultService?wsdl&#39;</span><span class=p>;</span>
+<span class=nv>$soap</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SoapClient</span><span class=p>(</span><span class=nv>$wsdlUrl</span><span class=p>);</span>
 <span class=nv>$soap</span><span class=o>-&gt;</span><span class=na>setCredentials</span><span class=p>(</span><span class=s1>&#39;20000000001MODDATOS&#39;</span><span class=p>,</span> <span class=s1>&#39;moddatos&#39;</span><span class=p>);</span>
 
 <span class=nv>$service</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>ConsultCdrService</span><span class=p>();</span>
-<span class=nv>$service</span><span class=o>-&gt;</span><span class=na>setClient</span><span class=p>(</span><span class=nv>$client</span><span class=p>);</span>
+<span class=nv>$service</span><span class=o>-&gt;</span><span class=na>setClient</span><span class=p>(</span><span class=nv>$soap</span><span class=p>);</span>
 
 <span class=nv>$rucEmisor</span> <span class=o>=</span> <span class=s1>&#39;20000000001&#39;</span><span class=p>;</span>
 <span class=nv>$tipoDocumento</span> <span class=o>=</span> <span class=s1>&#39;01&#39;</span><span class=p>;</span> <span class=c1>// 01: Factura, 07: Nota de Crédito, 08: Nota de Débito</span>
