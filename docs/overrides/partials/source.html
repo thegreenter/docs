@@ -1,11 +1,7 @@
 {% import "partials/language.html" as lang with context %}
 
 <!-- Repository containing source -->
-<a
-  href="{{ config.extra.repo_project }}"
-  title="{{ lang.t('source.link.title') }}"
-  class="md-source"
->
+<a href="{{ config.extra.repo_project }}" title="{{ lang.t('source.link.title') }}" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     {% set icon = config.theme.icon.repo or "fontawesome/brands/git-alt" %}
     {% include ".icons/" ~ icon ~ ".svg" %}
