@@ -1,11 +1,11 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.2/workbox-sw.js');
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox-sw.js');
 
 workbox.setConfig({debug: false});
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 workbox.googleAnalytics.initialize();
 
-workbox.core.clientsClaim();
 workbox.core.skipWaiting();
+workbox.core.clientsClaim();
 
 workbox.routing.registerRoute(
   /\.(?:js|css)$/,
