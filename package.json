@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/thegreenter/docs#readme",
   "dependencies": {
-    "workbox-cli": "^6.3.0"
+    "workbox-cli": "^6.4.1"
   }
 }
