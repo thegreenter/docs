@@ -5,7 +5,7 @@ Documentación de Greenter - Facturación Electrónica.
 
 ## Desarrollo
 
-Para iniciar el sitio localmente, necesita tener instalado `python (+3.7)`, e instalar las dependencias indicadas en `requirements.txt`.
+Para iniciar el sitio localmente, necesita tener instalado `python (+3.8)`, e instalar las dependencias indicadas en `requirements.txt`.
 ```
 pip install -IU -r requirements.txt
 mkdocs serve
