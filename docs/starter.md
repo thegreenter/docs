@@ -15,7 +15,7 @@ composer require greenter/lite
 
 === "Técnico"
 
-    - PHP `7.2` o superior
+    - PHP `7.4` o superior
     - Certificado en formato PEM
     - Credenciales Clave SOL
 
