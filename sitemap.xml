@@ -2,117 +2,94 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://greenter.dev/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/faq/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/migrate2.1/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/production/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/starter/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/usage/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/examples/anticipo/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/examples/boleta/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/examples/contingencia/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/examples/descuento-linea/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/examples/detraccion/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/examples/exonerada/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/examples/exportacion/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/examples/forma-pago/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/examples/gratuita/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/examples/icbper/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/examples/mas/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/examples/percepcion/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/packages/report/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/packages/sign/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/packages/ws/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/packages/xml-parser/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
     <url>
          <loc>https://greenter.dev/packages/xml/</loc>
-         <lastmod>2024-08-26</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-02</lastmod>
     </url>
 </urlset>
