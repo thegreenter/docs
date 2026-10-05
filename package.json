@@ -22,5 +22,8 @@
   "homepage": "https://github.com/thegreenter/docs#readme",
   "dependencies": {
     "workbox-cli": "^7.4.1"
+  },
+  "overrides": {
+    "tmp": "0.2.6"
   }
 }
