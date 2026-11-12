@@ -2,3 +2,5 @@ build/
 node_modules/
 vendor/
 site/
+# Generado por scripts/sunat_rules.py
+docs/sunat/reglas-validacion.json
