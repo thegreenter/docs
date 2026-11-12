@@ -38,6 +38,7 @@ nav:
       - greenter/ws: packages/ws.md
       - greenter/report: packages/report.md
       - greenter/xml-parser: packages/xml-parser.md
+      - 'Reglas de validación SUNAT': sunat/reglas-validacion.md
       - 'API Referencia': https://reference.greenter.dev/
 
 # Configuration

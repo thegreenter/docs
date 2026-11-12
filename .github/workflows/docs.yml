@@ -31,6 +31,8 @@ jobs:
         pip install -IU -r requirements.txt
         pip install -U ghp-import
         npm install
+    - name: Generate SUNAT rules
+      run: python scripts/sunat_rules.py
     - name: Build
       run: |
         mkdocs build
