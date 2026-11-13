@@ -49,7 +49,7 @@
 
     root.innerHTML =
       '<div class="rv-bar">' +
-        '<div class="rv-tabs" role="tablist" aria-label="Comprobante"></div>' +
+        '<div class="rv-tabs" role="tablist" aria-label="Documento"></div>' +
         '<div class="rv-tools">' +
           '<div class="rv-search"><input id="rv-q" type="search" autocomplete="off" aria-label="Buscar" ' +
             'placeholder="Buscar por tag, código (3244), campo o mensaje"></div>' +
@@ -165,10 +165,19 @@
       var d = docs.filter(function (x) { return x.key === state.doc; })[0];
       var r = filterDoc(d);
 
-      tabsEl.innerHTML = docs.map(function (x) {
-        var n = x === d ? r.count : filterDoc(x).count;
-        return '<button class="rv-tab" role="tab" data-doc="' + x.key + '" aria-selected="' + (x === d) + '">' +
-          esc(x.label) + ' <span class="n">' + n + '</span></button>';
+      var groups = [];
+      docs.forEach(function (x) {
+        var g = groups[groups.length - 1];
+        if (!g || g.name !== x.group) groups.push(g = { name: x.group, docs: [] });
+        g.docs.push(x);
+      });
+      tabsEl.innerHTML = groups.map(function (g) {
+        return '<div class="rv-group">' + (g.name ? '<span class="rv-group-name">' + esc(g.name) + '</span>' : '') +
+          g.docs.map(function (x) {
+            var n = x === d ? r.count : filterDoc(x).count;
+            return '<button class="rv-tab" role="tab" data-doc="' + x.key + '" aria-selected="' + (x === d) + '">' +
+              esc(x.label) + ' <span class="n">' + n + '</span></button>';
+          }).join('') + '</div>';
       }).join('');
       statusEl.textContent = r.count + ' validaciones en ' + r.fields + ' campos';
       tocEl.innerHTML = r.sections.map(function (x) {
@@ -181,7 +190,7 @@
 
       if (!r.sections.length) {
         content.innerHTML = '<div class="rv-empty">Nada coincide con “' + esc(state.q) + '” en ' + esc(d.label) +
-          '. El número junto a cada comprobante indica cuántas validaciones coinciden.</div>';
+          '. El número junto a cada documento indica cuántas validaciones coinciden.</div>';
         return;
       }
       content.innerHTML = r.sections.map(function (x) {

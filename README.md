@@ -20,5 +20,5 @@ La página [Reglas de validación SUNAT](https://greenter.dev/sunat/reglas-valid
 python scripts/sunat_rules.py
 ```
 
-Para actualizar a una nueva versión, reemplaza el `.xlsx` de `sunat/` por el nuevo, con la versión en el nombre (p. ej. `reglas-validacion-26.08.2026.xlsx`); la carpeta debe tener un solo `.xlsx`.
+Para actualizar a una nueva versión, reemplaza el `.xlsx` de `sunat/` por el nuevo, con la versión en el nombre (p. ej. `reglas-validacion-26.08.2026.xlsx`); la carpeta debe tener un solo `.xlsx`. Las hojas que se publican están en `SHEETS`, dentro del script; si SUNAT renombra una hoja (p. ej. `Resumen Diario1_1`), actualiza su nombre ahí.
 

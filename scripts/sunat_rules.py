@@ -24,23 +24,37 @@ ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DIR = ROOT / 'sunat'
 DEFAULT_OUT = ROOT / 'docs' / 'sunat' / 'reglas-validacion.json'
 
-# (clave en la URL, hoja del Excel, nombre del comprobante, elemento raíz UBL)
+# (clave en la URL, hoja del Excel, nombre del documento, elemento raíz UBL, grupo)
 SHEETS = [
-    ('factura', 'Factura2_0', 'Factura', 'Invoice'),
-    ('boleta', 'Boleta2_0', 'Boleta de venta', 'Invoice'),
-    ('nc', 'NotaCredito2_0', 'Nota de crédito', 'CreditNote'),
-    ('nd', 'NotaDebito2_0', 'Nota de débito', 'DebitNote'),
+    ('factura', 'Factura2_0', 'Factura', 'Invoice', 'Comprobantes'),
+    ('boleta', 'Boleta2_0', 'Boleta de venta', 'Invoice', 'Comprobantes'),
+    ('nc', 'NotaCredito2_0', 'Nota de crédito', 'CreditNote', 'Comprobantes'),
+    ('nd', 'NotaDebito2_0', 'Nota de débito', 'DebitNote', 'Comprobantes'),
+    ('retencion', 'Retenciones1_0', 'Retención', 'Retention', 'Otros documentos'),
+    ('percepcion', 'Percepciones1_0', 'Percepción', 'Perception', 'Otros documentos'),
+    ('baja', 'Comunicación de Baja1_0', 'Comunicación de baja', 'VoidedDocuments', 'Otros documentos'),
+    ('resumen', 'Resumen Diario1_1', 'Resumen diario', 'SummaryDocuments', 'Otros documentos'),
+    ('reversion', 'Resumen de reversiones1_0', 'Resumen de reversiones', 'VoidedDocuments', 'Otros documentos'),
 ]
 
-# Columnas de las hojas de comprobantes (la A está vacía).
-COLS = ('num', 'dato', 'nivel', 'cond', 'tipo', 'fmt', 'tag', 'uso', 'val', 'tret', 'cod', 'msg', 'lst')
+# Encabezados de la fila 2 → clave interna. No todas las hojas tienen las mismas
+# columnas (p. ej. "Uso del campo" solo existe en las de comprobantes).
+HEADERS = [
+    ('N°', 'num'), ('DATO', 'dato'), ('NIVEL', 'nivel'), ('CONDICION', 'cond'),
+    ('TIPO Y LONGITUD', 'tipo'), ('FORMATO', 'fmt'), ('TAG UBL', 'tag'), ('USO DEL CAMPO', 'uso'),
+    ('VALIDACION', 'val'), ('TIPO DE RETORNO', 'tret'), ('CODIGO', 'cod'), ('MENSAJE', 'msg'),
+    ('LISTADOS', 'lst'),
+]
+KEYS = [k for _, k in HEADERS]
+NUMBER = re.compile(r'^\d+(\.\d+)*$')
 
 
 def clean(value):
     if value is None:
         return ''
-    if isinstance(value, float) and value.is_integer():
-        value = int(value)
+    if isinstance(value, float):
+        # La numeración 12.3 llega como 12.299999999999999.
+        value = int(value) if value.is_integer() else f'{value:.6f}'.rstrip('0')
     text = str(value).replace('\r', '')
     text = re.sub(r'[ \t]+', ' ', text)
     text = re.sub(r'\n\s*\n+', '\n', text).strip()
@@ -52,18 +66,53 @@ def is_attribute(tag):
     return tag.startswith('@') or '@' in last
 
 
-def read_sheet(ws):
-    sections, section, field, entry = [], None, None, None
-    for row_number, row in enumerate(ws.iter_rows(min_row=3, values_only=True), 3):
-        values = [clean(v) for v in row[1:14]] + [''] * 13
-        r = dict(zip(COLS, values))
+def strip_accents(text):
+    return text.translate(str.maketrans('ÁÉÍÓÚ', 'AEIOU'))
 
-        # Fila de título de sección: texto en la columna N° sin dato ni tag.
-        if r['num'] and not r['num'].isdigit() and not r['dato'] and not r['tag']:
+
+def columns(header):
+    """Devuelve {clave: índice de columna} a partir de la fila de encabezados."""
+    found = {}
+    for i, value in enumerate(header):
+        name = strip_accents(re.sub(r'\s+', ' ', str(value or '')).strip().upper())
+        for prefix, key in HEADERS:
+            if name.startswith(prefix) and key not in found:
+                found[key] = i
+                break
+    missing = {'num', 'dato', 'tag', 'val', 'cod'} - found.keys()
+    if missing:
+        sys.exit(f'Faltan columnas {sorted(missing)} en la fila de encabezados: {header}')
+    return found
+
+
+def read_sheet(ws):
+    rows = ws.iter_rows(min_row=2, values_only=True)
+    cols = columns(next(rows))
+    general = {'title': 'Validaciones generales', 'fields': []}
+    sections, section, field, entry = [general], None, None, None
+
+    for row_number, row in enumerate(rows, 3):
+        r = {k: clean(row[cols[k]]) if k in cols and cols[k] < len(row) else '' for k in KEYS}
+
+        # Fila de título de sección: texto (no numeración) en la columna N°, sin dato.
+        if r['num'] and not NUMBER.match(r['num']) and not r['dato']:
             section = {'title': r['num'], 'fields': []}
             sections.append(section)
-            continue
+            field = entry = None
+            if not r['tag']:
+                continue
+            # Algunas secciones (Resumen diario) también indican el tag del bloque.
+            r['dato'] = r['num']
+            r['num'] = ''
+
+        # Validaciones antes de la primera sección (p. ej. "El ticket no existe").
         if section is None:
+            if r['cod']:
+                general['fields'].append({'n': '', 'dato': r['val'] or r['msg'], 'nivel': '', 'tags': [{
+                    'tag': '', 'cond': '', 'tipo': '', 'fmt': '', 'uso': '', 'attr': False, 'row': row_number,
+                    'v': [{'t': r['val'], 'k': r['tret'], 'c': r['cod'], 'm': r['msg'], 'l': r['lst'],
+                           'row': row_number}],
+                }]})
             continue
 
         if r['dato']:
@@ -72,7 +121,8 @@ def read_sheet(ws):
         if field is None:
             continue
 
-        if r['tag'] or (not field['tags'] and (r['val'] or r['tipo'] or r['fmt'])):
+        # Cada campo tiene al menos una entrada, aunque solo agrupe subcampos (Resumen diario).
+        if r['tag'] or r['dato'] or (not field['tags'] and (r['val'] or r['tipo'] or r['fmt'])):
             entry = {
                 'tag': r['tag'], 'cond': r['cond'], 'tipo': r['tipo'], 'fmt': r['fmt'],
                 'uso': r['uso'], 'attr': is_attribute(r['tag']) if r['tag'] else False,
@@ -85,6 +135,11 @@ def read_sheet(ws):
                 't': r['val'], 'k': r['tret'], 'c': r['cod'], 'm': r['msg'], 'l': r['lst'], 'row': row_number,
             })
 
+    for s in sections:
+        for f in s['fields']:
+            # Entradas vacías: filas del campo sin tag ni datos propios.
+            f['tags'] = [t for t in f['tags'] if t['tag'] or t['v'] or t['cond'] or t['tipo'] or t['fmt']] \
+                or f['tags'][:1]
     return [s for s in sections if s['fields']]
 
 
@@ -104,9 +159,10 @@ def main(argv):
 
     wb = openpyxl.load_workbook(src, data_only=True, read_only=True)
     docs = []
-    for key, sheet, label, root in SHEETS:
+    for key, sheet, label, root, group in SHEETS:
         sections = read_sheet(wb[sheet])
-        docs.append({'key': key, 'sheet': sheet, 'label': label, 'root': root, 'sections': sections})
+        docs.append({'key': key, 'sheet': sheet, 'label': label, 'root': root, 'group': group,
+                     'sections': sections})
         fields = sum(len(s['fields']) for s in sections)
         rules = sum(len(t['v']) for s in sections for f in s['fields'] for t in f['tags'])
         print(f'{sheet}: {len(sections)} secciones, {fields} campos, {rules} validaciones')
