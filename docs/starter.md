@@ -198,7 +198,7 @@ $invoice->setDetails([$item])
 
 ```
 
-Los catálogos que se mencionan en los comentarios del código se encuentran en la _Reglas de Validaciones de SUNAT_, puedes obtener la última versión en la [página oficial de SUNAT](https://cpe.sunat.gob.pe/node/88#item-1).
+Los catálogos que se mencionan en los comentarios del código se encuentran en la _Reglas de Validaciones de SUNAT_, puedes obtener la última versión en la [página oficial de SUNAT](https://cpe.sunat.gob.pe/guias-y-manuales).
 
 ## Envío a SUNAT
 
