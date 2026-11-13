@@ -33,7 +33,15 @@
   background: var(--md-default-bg-color);
   border-bottom: 1px solid var(--rv-line);
 }
-.rv-tabs, .rv-tools, .rv-chips { display: flex; flex-wrap: wrap; gap: .25rem; align-items: center; }
+.rv-tabs { display: flex; flex-direction: column; gap: .35rem; }
+.rv-group, .rv-tools, .rv-chips { display: flex; flex-wrap: wrap; gap: .25rem; align-items: center; }
+.rv-group-name {
+  font-size: .55rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--rv-muted);
+  min-width: 7.5rem;
+}
 .rv-tools { gap: .5rem; }
 .rv button { font: inherit; cursor: pointer; }
 .rv-tab {
@@ -85,9 +93,9 @@
 .rv-body { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1.2rem; padding-top: 1rem; }
 .rv-toc {
   position: sticky;
-  top: 9rem;
+  top: 10.5rem;
   align-self: start;
-  max-height: calc(100vh - 10rem);
+  max-height: calc(100vh - 11.5rem);
   overflow: auto;
   font-size: .62rem;
 }
@@ -110,7 +118,7 @@
   background: var(--rv-surface);
   color: var(--md-default-fg-color);
 }
-.rv-sec { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.4rem; scroll-margin-top: 9rem; }
+.rv-sec { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.4rem; scroll-margin-top: 10.5rem; }
 .rv-sec-title {
   font-weight: 700;
   font-size: .8rem;
@@ -187,4 +195,5 @@
   .rv-tag.attr { padding-left: 1.1rem; }
   .rv-bar { position: static; }
   .rv-sec { scroll-margin-top: 3rem; }
+  .rv-group-name { flex-basis: 100%; }
 }
